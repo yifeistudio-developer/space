@@ -20,6 +20,7 @@ public final class Jsons {
 
     // 默认配置
     static {
+        objectMapper = new ObjectMapper();
 
     }
 

@@ -2,6 +2,8 @@ package com.yifeistudio.space.unit.util;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 /**
  * Json 工具测试
  *
@@ -20,8 +22,7 @@ class JsonTests {
      */
     @Test
     void stringifyTest() {
-        Jsons.stringify();
-
+        Jsons.stringify("");
     }
 
     /**
