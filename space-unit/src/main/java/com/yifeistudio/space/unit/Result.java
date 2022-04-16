@@ -12,6 +12,8 @@ public class Result {
 
     private String msg;
 
+    //---------- getter setter ----------
+
     public int getCode() {
         return code;
     }

@@ -64,13 +64,14 @@ public final class Jsons {
      * @param json json-字符串
      * @param clz  目标类型
      * @return 目标类型对象
+     * @param <T> 目标类型
      */
     public static <T> Optional<T> parse(String json, Class<T> clz) {
 
         return Optional.empty();
     }
 
-    //----------
+    //---------- getter setter ----------
 
     public ObjectMapper getObjectMapper() {
         return objectMapper;

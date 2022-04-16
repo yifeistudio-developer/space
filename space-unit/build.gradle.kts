@@ -24,21 +24,16 @@ dependencies {
 }
 
 java {
-    withJavadocJar()
+//    withJavadocJar()
     withSourcesJar()
 }
 
-val sourcesJar by tasks.registering(Jar::class) {
-    //如果没有配置main会报错
-    from(sourceSets["main"].allSource)
-    archiveClassifier.set("sources")
-}
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            artifact(sourcesJar)
             artifactId = project.name
+            from(components["java"])
             versionMapping {
                 usage("java-api") {
                     fromResolutionOf("runtimeClasspath")
@@ -69,6 +64,7 @@ publishing {
         }
     }
 }
+
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
