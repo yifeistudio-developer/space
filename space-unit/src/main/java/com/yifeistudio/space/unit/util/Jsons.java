@@ -1,5 +1,6 @@
 package com.yifeistudio.space.unit.util;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -21,7 +22,7 @@ public final class Jsons {
     // 默认配置
     static {
         objectMapper = new ObjectMapper();
-
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
     private Jsons() {}

@@ -1,5 +1,6 @@
 package com.yifeistudio.space.unit.util;
 
+import com.yifeistudio.space.unit.Result;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -22,7 +23,8 @@ class JsonTests {
      */
     @Test
     void stringifyTest() {
-        Jsons.stringify("");
+        String value = Jsons.stringify(Result.success(null)).get();
+        System.out.println(value);
     }
 
     /**
