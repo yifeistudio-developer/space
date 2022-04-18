@@ -44,8 +44,6 @@ publishing {
             val isSnapshotVersion = version.toString().endsWith("SNAPSHOT")
 
             credentials {
-                username = "yifeistudio"
-                password = "YiFei110930008&"
             }
             url = if (isSnapshotVersion) {
                 uri(snapshotsRepoUrl)
