@@ -22,7 +22,6 @@ repositories {
 }
 
 dependencies {
-    implementation("com.yifeistudio:space-unit:1.0-SNAPSHOT")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
