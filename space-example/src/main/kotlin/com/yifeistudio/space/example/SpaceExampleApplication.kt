@@ -1,4 +1,4 @@
-package com.example.space.example
+package com.yifeistudio.space.example
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

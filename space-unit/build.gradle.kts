@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    `java-library`
     `maven-publish`
 }
 
@@ -24,24 +25,13 @@ dependencies {
 }
 
 java {
-//    withJavadocJar()
     withSourcesJar()
 }
-
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            artifactId = project.name
             from(components["java"])
-            versionMapping {
-                usage("java-api") {
-                    fromResolutionOf("runtimeClasspath")
-                }
-                usage("java-runtime") {
-                    fromResolutionResult()
-                }
-            }
         }
     }
 
@@ -54,7 +44,8 @@ publishing {
             val isSnapshotVersion = version.toString().endsWith("SNAPSHOT")
 
             credentials {
-
+                username = "yifeistudio"
+                password = "YiFei110930008&"
             }
             url = if (isSnapshotVersion) {
                 uri(snapshotsRepoUrl)
@@ -64,7 +55,6 @@ publishing {
         }
     }
 }
-
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
