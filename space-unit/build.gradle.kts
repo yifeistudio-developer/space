@@ -1,8 +1,13 @@
 plugins {
     id("java")
+    signing
     `java-library`
     `maven-publish`
 }
+
+val ossrhUsername: String by project
+val ossrhPassword: String by project
+
 
 group = "com.yifeistudio"
 version = "1.0-SNAPSHOT"
@@ -14,8 +19,8 @@ repositories {
 
 dependencies {
 
-    compileOnly("com.fasterxml.jackson.core:jackson-databind:2.13.2.2")
     compileOnly("com.fasterxml.jackson.core:jackson-core:2.13.2")
+    compileOnly("com.fasterxml.jackson.core:jackson-databind:2.13.2.2")
 
     testRuntimeOnly("com.fasterxml.jackson.core:jackson-core:2.13.2")
     testRuntimeOnly("com.fasterxml.jackson.core:jackson-databind:2.13.2.2")
@@ -44,6 +49,8 @@ publishing {
             val isSnapshotVersion = version.toString().endsWith("SNAPSHOT")
 
             credentials {
+                username = ossrhUsername
+                password = ossrhPassword
             }
             url = if (isSnapshotVersion) {
                 uri(snapshotsRepoUrl)
@@ -52,6 +59,11 @@ publishing {
             }
         }
     }
+}
+
+// 加密
+signing {
+    sign(publishing.publications["mavenJava"])
 }
 
 tasks.getByName<Test>("test") {
