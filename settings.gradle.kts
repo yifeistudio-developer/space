@@ -1,2 +1,3 @@
 rootProject.name = "space"
-include("space-unit")
+include("space-unit", "space-starter")
+
