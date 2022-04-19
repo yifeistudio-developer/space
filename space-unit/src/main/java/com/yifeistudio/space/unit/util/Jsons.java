@@ -68,8 +68,12 @@ public final class Jsons {
      * @param <T> 目标类型
      */
     public static <T> Optional<T> parse(String json, Class<T> clz) {
-
-        return Optional.empty();
+        try {
+            T value = objectMapper.readValue(json, clz);
+            return Optional.of(value);
+        } catch (JsonProcessingException e) {
+            return Optional.empty();
+        }
     }
 
     //---------- getter setter ----------
