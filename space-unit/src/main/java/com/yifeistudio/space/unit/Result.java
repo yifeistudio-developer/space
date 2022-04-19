@@ -3,6 +3,8 @@ package com.yifeistudio.space.unit;
 /**
  * 统一处理结果模型
  *
+ * * 框架层数据模型不建议业务感知
+ *
  * @author : hongyi
  * created at 2022/4/15 - 13:33
  **/
@@ -62,3 +64,4 @@ public class Result<T> {
         this.data = data;
     }
 }
+///~

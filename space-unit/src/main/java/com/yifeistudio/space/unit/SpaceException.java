@@ -22,6 +22,7 @@ public class SpaceException extends RuntimeException {
         this.isFatal = isFatal;
     }
 
+    //---------- getter setter ----------
     public boolean isFatal() {
         return isFatal;
     }
@@ -30,3 +31,4 @@ public class SpaceException extends RuntimeException {
         return result;
     }
 }
+///~
