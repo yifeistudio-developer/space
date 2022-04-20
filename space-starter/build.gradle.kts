@@ -17,6 +17,7 @@ configurations {
 
 repositories {
     mavenCentral()
+    maven(url = "https://s01.oss.sonatype.org/content/groups/public/")
 }
 
 val lombokVersion = "1.18.22"
