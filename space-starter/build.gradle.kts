@@ -1,8 +1,6 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.6.6"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.6.10"
     kotlin("plugin.spring") version "1.6.10"
 }
@@ -21,14 +19,26 @@ repositories {
     mavenCentral()
 }
 
+val lombokVersion = "1.18.22"
+val spaceVersion = "1.0-SNAPSHOT"
+val springBootVersion = "2.6.6"
+
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter")
+
+    implementation("com.yifeistudio:space-unit:${spaceVersion}")
+
+    compileOnly("org.springframework.boot:spring-boot:${springBootVersion}")
+    compileOnly("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
+    compileOnly("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compileOnly("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
+
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
-    annotationProcessor("org.projectlombok:lombok")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
 }
 
 tasks.withType<KotlinCompile> {
