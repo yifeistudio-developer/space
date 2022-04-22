@@ -78,7 +78,7 @@ public final class Jsons {
 
     //---------- getter setter ----------
 
-    public ObjectMapper getObjectMapper() {
+    public static ObjectMapper getObjectMapper() {
         return objectMapper;
     }
 
