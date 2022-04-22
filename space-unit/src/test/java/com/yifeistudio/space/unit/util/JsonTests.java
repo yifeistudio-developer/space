@@ -1,9 +1,7 @@
 package com.yifeistudio.space.unit.util;
 
-import com.yifeistudio.space.unit.Result;
+import com.yifeistudio.space.unit.model.Result;
 import org.junit.jupiter.api.Test;
-
-import java.util.Optional;
 
 /**
  * Json 工具测试

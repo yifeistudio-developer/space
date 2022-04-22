@@ -1,4 +1,4 @@
-package com.yifeistudio.space.unit;
+package com.yifeistudio.space.unit.model;
 
 /**
  * 统一处理结果模型

@@ -18,7 +18,6 @@ repositories {
 
 dependencies {
 
-//    compileOnly("org.slf4j:slf4j-api:2.0.0-alpha7")
     compileOnly("com.fasterxml.jackson.core:jackson-core:2.13.2")
     compileOnly("com.fasterxml.jackson.core:jackson-databind:2.13.2.2")
 

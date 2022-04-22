@@ -1,9 +1,15 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    signing
+    `java-library`
+    `maven-publish`
     kotlin("jvm") version "1.6.10"
     kotlin("plugin.spring") version "1.6.10"
 }
+
+val ossrhUsername: String by project
+val ossrhPassword: String by project
 
 group = "com.yifeistudio"
 version = "0.0.1-SNAPSHOT"
@@ -26,7 +32,7 @@ val springBootVersion = "2.6.6"
 
 dependencies {
 
-    implementation("com.yifeistudio:space-unit:${spaceVersion}")
+    api("com.yifeistudio:space-unit:${spaceVersion}")
 
     compileOnly("org.springframework.boot:spring-boot:${springBootVersion}")
     compileOnly("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
@@ -40,6 +46,39 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
     testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+
+    // 仓库配置
+    repositories {
+        maven {
+
+            val releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            val snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            val isSnapshotVersion = version.toString().endsWith("SNAPSHOT")
+
+            credentials {
+                username = ossrhUsername
+                password = ossrhPassword
+            }
+            url = if (isSnapshotVersion) {
+                uri(snapshotsRepoUrl)
+            } else {
+                uri(releasesRepoUrl)
+            }
+        }
+    }
+}
+
+// 加密
+signing {
+    sign(publishing.publications["mavenJava"])
 }
 
 tasks.withType<KotlinCompile> {

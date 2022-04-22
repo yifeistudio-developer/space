@@ -1,0 +1,1 @@
+org.springframework.context.ApplicationListener=com.yifeistudio.space.starter.auto.SpaceListener

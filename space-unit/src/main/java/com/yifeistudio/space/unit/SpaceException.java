@@ -1,5 +1,7 @@
 package com.yifeistudio.space.unit;
 
+import com.yifeistudio.space.unit.model.Result;
+
 /**
  * 应用异常
  *
