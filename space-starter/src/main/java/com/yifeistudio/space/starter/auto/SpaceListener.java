@@ -1,10 +1,13 @@
 package com.yifeistudio.space.starter.auto;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yifeistudio.space.unit.util.Jsons;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+
+import javax.annotation.Resource;
 
 /**
  * @author : hongyi
@@ -12,6 +15,9 @@ import org.springframework.context.ApplicationListener;
  **/
 @Slf4j
 class SpaceListener implements ApplicationListener<ApplicationEvent> {
+
+    @Resource
+    private ObjectMapper objectMapper;
 
 
     /**
@@ -21,9 +27,8 @@ class SpaceListener implements ApplicationListener<ApplicationEvent> {
      */
     @Override
     public void onApplicationEvent(ApplicationEvent event) {
-        if (event instanceof ApplicationStartedEvent) {
-            Jsons.stringify(event).ifPresent(System.out::println);
-            log.info("application started.");
+        if (event instanceof ApplicationEnvironmentPreparedEvent) {
+
         }
     }
 }

@@ -82,7 +82,7 @@ public final class Jsons {
         return objectMapper;
     }
 
-    public void setObjectMapper(ObjectMapper objectMapper) {
+    public static void setObjectMapper(ObjectMapper objectMapper) {
         Jsons.objectMapper = objectMapper;
     }
 
