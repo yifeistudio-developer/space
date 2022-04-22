@@ -15,4 +15,11 @@ class AssertTests {
 
     }
 
+    @Test
+    void assertTrueTest() {
+        Asserts.isTrue(true, "no error");
+        // Asserts.isTrue(1 == 2, "assert failed");
+        Asserts.isTrue(true, true, "no error");
+    }
+
 }
