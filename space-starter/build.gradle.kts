@@ -36,7 +36,6 @@ dependencies {
 
     compileOnly("org.springframework.boot:spring-boot:${springBootVersion}")
     compileOnly("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
-    compileOnly("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     compileOnly("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -46,6 +45,10 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
     testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+}
+
+java {
+    withSourcesJar()
 }
 
 publishing {
