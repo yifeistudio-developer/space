@@ -9,6 +9,7 @@
     <property name="FILE_LOG_PATTERN" value="%date [%level] [%thread] [%file : %line] %msg%n" />
     <property name="CONSOLE_LOG_PATTERN"
               value="%green(%date{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %green([%thread]) %magenta(%logger{50}) %cyan(%msg%n)"/>
+    <property name="LOG_DIR_DEFAULT" value="${LOG_DIR:-log}" />
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${CONSOLE_LOG_PATTERN}</pattern>
@@ -17,9 +18,9 @@
     </appender>
 
     <appender name="debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${LOG_DIR}/debug.log</File>
+        <File>${LOG_DIR_DEFAULT}/debug.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/%d{yyyy-MM-dd}(%i)-debug.log</fileNamePattern>
+            <fileNamePattern>${LOG_DIR_DEFAULT}/%d{yyyy-MM-dd}(%i)-debug.log</fileNamePattern>
             <maxHistory>15</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>200MB</maxFileSize>
@@ -37,9 +38,9 @@
     </appender>
 
     <appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${LOG_DIR}/info.log</File>
+        <File>${LOG_DIR_DEFAULT}/info.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/%d{yyyy-MM-dd}(%i)-info.log</fileNamePattern>
+            <fileNamePattern>${LOG_DIR_DEFAULT}/%d{yyyy-MM-dd}(%i)-info.log</fileNamePattern>
             <maxHistory>15</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>200MB</maxFileSize>
@@ -57,9 +58,9 @@
     </appender>
 
     <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>${LOG_DIR}/error.log</File>
+        <File>${LOG_DIR_DEFAULT}/error.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/%d{yyyy-MM-dd}(%i)-error.log</fileNamePattern>
+            <fileNamePattern>${LOG_DIR_DEFAULT}/%d{yyyy-MM-dd}(%i)-error.log</fileNamePattern>
             <maxHistory>30</maxHistory>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>200MB</maxFileSize>

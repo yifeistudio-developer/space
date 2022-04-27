@@ -12,8 +12,6 @@ import org.springframework.context.ApplicationListener;
 @Slf4j
 class SpaceListener implements ApplicationListener<ApplicationEvent> {
 
-
-
     /**
      * Handle an application event.
      *
@@ -22,9 +20,7 @@ class SpaceListener implements ApplicationListener<ApplicationEvent> {
     @Override
     public void onApplicationEvent(ApplicationEvent event) {
         if (event instanceof ApplicationEnvironmentPreparedEvent) {
-            if (log.isDebugEnabled()) {
-
-            }
+            log.info("space-starter is testing...");
         }
     }
 }
