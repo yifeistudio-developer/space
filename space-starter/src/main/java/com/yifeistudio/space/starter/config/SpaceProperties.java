@@ -9,10 +9,6 @@ import lombok.Data;
  * created at 2022/4/22 - 11:15
  **/
 @Data
-public class SpaceConfig {
-
-
-
-
+public class SpaceProperties {
 
 }
