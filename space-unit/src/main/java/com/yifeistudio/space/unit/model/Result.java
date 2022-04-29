@@ -1,5 +1,7 @@
 package com.yifeistudio.space.unit.model;
 
+import java.io.Serializable;
+
 /**
  * 统一处理结果模型
  *
@@ -8,7 +10,7 @@ package com.yifeistudio.space.unit.model;
  * @author : hongyi
  * created at 2022/4/15 - 13:33
  **/
-public class Result<T> {
+public class Result<T> implements Serializable {
 
     private int code;
 
@@ -26,7 +28,7 @@ public class Result<T> {
         this.data = data;
     }
 
-    public static Result<?> success() {
+    public static <T> Result<T> success() {
         return Result.success(null);
     }
 
@@ -34,7 +36,7 @@ public class Result<T> {
         return new Result<>(0, data);
     }
 
-    public static Result<?> fail(int code, String msg) {
+    public static <T> Result<T> fail(int code, String msg) {
         return new Result<>(code, msg);
     }
 

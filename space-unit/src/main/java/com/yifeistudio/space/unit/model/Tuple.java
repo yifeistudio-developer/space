@@ -1,41 +1,44 @@
 package com.yifeistudio.space.unit.model;
 
+import java.io.Serializable;
+
 /**
  * 元组
  *
  * @author : hongyi
  * created at 2022/4/22 - 10:52
  **/
-public class Tuple<T, R> {
+public class Tuple<L, R> implements Serializable {
 
-    private T t;
-    private R r;
+    private L left;
+    private R right;
 
-    public Tuple(T t, R r) {
-        this.t = t;
-        this.r = r;
+    public Tuple(L left, R right) {
+        this.left = left;
+        this.right = right;
     }
 
-    public static <T, R> Tuple<T, R> of(T t, R r) {
-        return new Tuple<>(t, r);
+    public static <T, R> Tuple<T, R> of(T left, R right) {
+        return new Tuple<>(left, right);
     }
 
 
     //---------- getter setter ----------
 
-    public T getT() {
-        return t;
+
+    public L getLeft() {
+        return left;
     }
 
-    public void setT(T t) {
-        this.t = t;
+    public void setLeft(L left) {
+        this.left = left;
     }
 
-    public R getR() {
-        return r;
+    public R getRight() {
+        return right;
     }
 
-    public void setR(R r) {
-        this.r = r;
+    public void setRight(R right) {
+        this.right = right;
     }
 }
