@@ -1,5 +1,6 @@
 package com.yifeistudio.space.unit.model;
 
+import com.yifeistudio.space.unit.util.Asserts;
 import com.yifeistudio.space.unit.util.Promises;
 
 import java.util.concurrent.ExecutorService;
@@ -51,6 +52,7 @@ public class DefaultPromise<T> implements Promise<T> {
     }
 
     public DefaultPromise(ExecutorService executorService) {
+        Asserts.notNull(executorService, "executorService is required nonNull");
         this.executorService = executorService;
     }
 
