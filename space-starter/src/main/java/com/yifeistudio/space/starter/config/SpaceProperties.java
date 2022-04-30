@@ -11,4 +11,11 @@ import lombok.Data;
 @Data
 public class SpaceProperties {
 
+    /**
+     * 是否启用
+     */
+    private boolean enable;
+
+
+
 }

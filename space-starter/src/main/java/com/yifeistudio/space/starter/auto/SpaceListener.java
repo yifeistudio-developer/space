@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 
 /**
+ * Space listener
+ *
  * @author : hongyi
  * created at 2022/4/20 - 11:06
  **/
