@@ -2,8 +2,10 @@ package com.yifeistudio.space.unit.model;
 
 import com.yifeistudio.space.unit.util.Promises;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * 默认实现
@@ -14,9 +16,20 @@ import java.util.function.Function;
 public class DefaultPromise<T> implements Promise<T> {
 
     /**
-     * 是否已完成
+     * 执行成功
      */
-    private boolean isDone;
+    private final byte SUCCEED = 1;
+
+    /**
+     * 执行失败
+     */
+    private final byte FAILED = -1;
+
+    /**
+     * 执行标识
+     */
+    private volatile byte flag;
+
 
     /**
      * 正常结束结果
@@ -28,7 +41,9 @@ public class DefaultPromise<T> implements Promise<T> {
      */
     private Throwable error;
 
-
+    /**
+     * 执行器
+     */
     private final ExecutorService executorService;
 
     public DefaultPromise() {
@@ -39,36 +54,54 @@ public class DefaultPromise<T> implements Promise<T> {
         this.executorService = executorService;
     }
 
-    public Promise<T> success(Function<? super T, Promise<T>> callback) {
-        return null;
+    public static <T> Promise<T> of(Supplier<T> supplier) {
+        DefaultPromise<T> defaultPromise = new DefaultPromise<>();
+        defaultPromise.executorService.submit(() -> {
+            try {
+                defaultPromise.result = supplier.get();
+            } catch (Throwable throwable) {
+                defaultPromise.error = throwable;
+            } finally {
+                defaultPromise.flag = defaultPromise.error == null
+                        ? defaultPromise.SUCCEED : defaultPromise.FAILED;
+            }
+        });
+        return defaultPromise;
     }
 
-    public Promise<T> fail(Function<? super Throwable, Promise<T>> callback) {
-        DefaultPromise<T> newPromise = new DefaultPromise<>(this.executorService);
-        newPromise.isDone = true;
+    public <V> Promise<V> success(Function<? super T, ? extends V> callback) {
+        DefaultPromise<V> defaultPromise = new DefaultPromise<>();
+        defaultPromise.executorService.submit(() -> {
+            try {
+                defaultPromise.result = callback.apply(this.get());
+            } catch (Throwable throwable) {
+                defaultPromise.error = throwable;
+            } finally {
+                synchronized (this) {
+                    flag = defaultPromise.error == null ? SUCCEED : FAILED;
+                }
+            }
+        });
+        return defaultPromise;
+    }
+
+    public <V> Promise<V> fail(Function<? super T, ? extends V> callback) {
+        DefaultPromise<V> newPromise = new DefaultPromise<>(this.executorService);
+        newPromise.flag = FAILED;
         return newPromise;
     }
 
 
-    public Promise<T> then(Function<? super T, Promise<T>> successCallback,
+    public <V> Promise<V> then(Function<? super T, ? extends V> successCallback,
                            Function<? super Throwable, Promise<T>> failCallback) {
-        DefaultPromise<T> newPromise = new DefaultPromise<>(this.executorService);
-        executorService.submit(() -> {
-            try {
-                T result = this.get();
-                newPromise.result = result;
-                return successCallback.apply(result);
-            } catch (Throwable throwable) {
-                return failCallback.apply(throwable);
-            } finally {
-                newPromise.isDone = true;
-            }
-        });
+        DefaultPromise<V> newPromise = new DefaultPromise<>(this.executorService);
         return newPromise;
     }
 
     public static <T> Promise<T> empty() {
-        return new DefaultPromise<>();
+        DefaultPromise<T> defaultPromise = new DefaultPromise<>();
+        defaultPromise.flag = defaultPromise.SUCCEED;
+        return defaultPromise;
     }
 
     @Override
@@ -87,19 +120,25 @@ public class DefaultPromise<T> implements Promise<T> {
 
     @Override
     public boolean isDone() {
-        return isDone;
+        return flag != 0;
     }
 
 
     @Override
-    public T get() {
-
+    public synchronized T get() {
+        while (flag == 0) {
+            try {
+                wait();
+                return result;
+            } catch (InterruptedException ignore) {
+                // ignore exception.
+            }
+        }
         return null;
     }
 
-
     @Override
-    public T get(long timeout, TimeUnit unit) {
+    public synchronized T get(long timeout, TimeUnit unit) {
         return null;
     }
 }
