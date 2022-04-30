@@ -1,6 +1,5 @@
 package com.yifeistudio.space.unit.model;
 
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
@@ -42,9 +41,26 @@ public interface Promise<T> {
     <V> Promise<V> then(Function<? super T, ? extends V> successCallback,
                         Function<? super Throwable, ? extends V> failCallback);
 
+    /**
+     * 是否已经结束
+     *
+     * @return 是否执行结束
+     */
     boolean isDone();
 
+    /**
+     * 获取执行结果
+     *
+     * @return 执行结果
+     */
     T get();
 
+    /**
+     * 获取执行结果-超时返回
+     *
+     * @param timeout 超时时间
+     * @param unit 时间单位
+     * @return 执行结果
+     */
     T get(long timeout, TimeUnit unit);
 }
