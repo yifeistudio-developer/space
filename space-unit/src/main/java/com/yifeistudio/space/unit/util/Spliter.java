@@ -30,7 +30,7 @@ public final class Spliter {
         int len;
         int index;
         for (int i = 0; i < patchSize; i++) {
-            len = i == (patchSize - 1) && (remain > 0)? remain : size;
+            len = i == (patchSize - 1) && (remain > 0) ? remain : size;
             index = i * size;
             List<T> patch = new ArrayList<>(len);
             for (int j = 0; j < len; j++) {
