@@ -4,7 +4,7 @@ package com.yifeistudio.space.unit.util;
 import java.util.*;
 
 /**
- * 拆分工具
+ * 集合工具
  *
  * @author : hongyi
  * created at 2022/5/9 - 20:35
