@@ -28,7 +28,7 @@ class NoSpringTests {
             x.add(i);
         }
         long l = System.currentTimeMillis();
-        List<List<Integer>> split = CollectionUtil.split(x, 100);
+        List<List<Integer>> split = CollectionUtil.split(x, 50);
         System.out.println(System.currentTimeMillis() - l);
     }
 
