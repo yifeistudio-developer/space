@@ -26,9 +26,9 @@ repositories {
     maven(url = "https://s01.oss.sonatype.org/content/groups/public/")
 }
 
-val lombokVersion = "1.18.22"
+val lombokVersion = "1.18.24"
 val spaceVersion = "1.0-SNAPSHOT"
-val springBootVersion = "2.6.6"
+val springBootVersion = "2.6.7"
 
 dependencies {
 
