@@ -4,7 +4,6 @@ import com.yifeistudio.space.unit.util.Asserts;
 import com.yifeistudio.space.unit.util.Promises;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -163,9 +162,4 @@ public class DefaultPromise<T> implements Promise<T> {
         return null;
     }
 
-    @Override
-    public synchronized T get(long timeout, TimeUnit unit) {
-        // TODO: 2022/4/30 执行函数
-        return null;
-    }
 }

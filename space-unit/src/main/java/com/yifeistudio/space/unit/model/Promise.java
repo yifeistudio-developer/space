@@ -1,6 +1,5 @@
 package com.yifeistudio.space.unit.model;
 
-import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 /**
@@ -54,13 +53,4 @@ public interface Promise<T> {
      * @return 执行结果
      */
     T get();
-
-    /**
-     * 获取执行结果-超时返回
-     *
-     * @param timeout 超时时间
-     * @param unit 时间单位
-     * @return 执行结果
-     */
-    T get(long timeout, TimeUnit unit);
 }
