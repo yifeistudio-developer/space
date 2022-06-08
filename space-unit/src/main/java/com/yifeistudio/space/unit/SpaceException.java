@@ -19,7 +19,11 @@ public class SpaceException extends RuntimeException {
     }
 
     public SpaceException(Result<?> result, boolean isFatal) {
-        super(result.getMsg());
+        this(result, isFatal, null);
+    }
+
+    public SpaceException(Result<?> result, boolean isFatal, Throwable throwable) {
+        super(result.getMsg(), throwable);
         this.result = result;
         this.isFatal = isFatal;
     }
