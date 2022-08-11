@@ -20,21 +20,21 @@ public final class Promises {
     }
 
     public static synchronized ExecutorService getExecutorService() {
-        if (executorService == null) {
-            int processorNum = Runtime.getRuntime().availableProcessors();
-            int coreSize = processorNum + 1;
-            BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
-            Promises.executorService = new ThreadPoolExecutor(coreSize,
-                    2 * coreSize,
-                    5,
-                    TimeUnit.MINUTES,
-                    blockingQueue, r -> {
-                Thread thread = new Thread(r);
-                thread.setName("default-promise-thread-" + thread.getId());
-                return thread;
-            });
+        if (executorService != null) {
             return executorService;
         }
+        int processorNum = Runtime.getRuntime().availableProcessors();
+        int coreSize = processorNum + 1;
+        BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
+        Promises.executorService = new ThreadPoolExecutor(coreSize,
+                2 * coreSize,
+                5,
+                TimeUnit.MINUTES,
+                blockingQueue, r -> {
+            Thread thread = new Thread(r);
+            thread.setName("default-promise-thread-" + thread.getId());
+            return thread;
+        });
         return executorService;
     }
 }

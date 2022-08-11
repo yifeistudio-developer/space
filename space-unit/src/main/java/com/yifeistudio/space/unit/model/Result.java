@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 统一处理结果模型
- *
+ * <p>
  * * 框架层数据模型不建议业务感知
  *
  * @author : hongyi
