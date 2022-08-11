@@ -4,7 +4,7 @@ import com.yifeistudio.space.unit.model.Result;
 
 /**
  * 断言异常
- *
+ * <p>
  * # 默认不进行堆栈追踪
  * @author : hongyi
  * created at 2022/4/19 - 10:14
