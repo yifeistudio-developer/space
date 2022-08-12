@@ -9,7 +9,7 @@ val ossrhUsername: String by project
 val ossrhPassword: String by project
 
 group = "com.yifeistudio"
-version = "1.0-SNAPSHOT"
+version = "1.0-RELEASE"
 
 repositories {
     mavenLocal()
