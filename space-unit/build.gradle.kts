@@ -9,14 +9,13 @@ val ossrhUsername: String by project
 val ossrhPassword: String by project
 
 group = "com.yifeistudio"
-version = "1.0-SNAPSHOT"
+version = "2.0-SNAPSHOT"
 
 // Invalid POM: /com/yifeistudio/space-unit/1.0-RELEASE/space-unit-1.0-RELEASE.pom:
 // Project name missing,
 // Project description missing, Project URL missing,
 // License information missing,
 // SCM URL missing, Developer information missing
-
 
 repositories {
     mavenLocal()

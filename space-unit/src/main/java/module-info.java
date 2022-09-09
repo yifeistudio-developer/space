@@ -5,5 +5,6 @@
  * created at 2022/9/9 - 17:27
  **/
 module space.space.unit.main {
-
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.databind;
 }
