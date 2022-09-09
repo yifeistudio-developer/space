@@ -22,14 +22,15 @@ class NoSpringTests {
 
     @Test
     void splitTest() {
-        int size = 100000000;
+        int size = 3;
         List<Integer> x = new ArrayList<>(size);
         for (int i = 0; i < size; i++) {
             x.add(i);
         }
         long l = System.currentTimeMillis();
-        List<List<Integer>> split = CollectionUtil.split(x, 50);
+        List<List<Integer>> split = CollectionUtil.split(x, 8);
         System.out.println(System.currentTimeMillis() - l);
+        System.out.println(Jsons.stringify(split).get());
     }
 
 }
