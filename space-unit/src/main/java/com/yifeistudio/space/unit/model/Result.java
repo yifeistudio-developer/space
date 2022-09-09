@@ -10,22 +10,14 @@ import java.io.Serializable;
  * @author : hongyi
  * created at 2022/4/15 - 13:33
  **/
-public class Result<T> implements Serializable {
-
-    private int code;
-
-    private T data;
-
-    private String msg;
+public record Result<T> (int code, String msg, T data) implements Serializable {
 
     public Result(int code, String msg) {
-        this.code = code;
-        this.msg = msg;
+        this(code, msg, null);
     }
 
     public Result(int code, T data) {
-        this.code = code;
-        this.data = data;
+        this(code, null, data);
     }
 
     public static <T> Result<T> success() {
@@ -40,30 +32,5 @@ public class Result<T> implements Serializable {
         return new Result<>(code, msg);
     }
 
-    //---------- getter setter ----------
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }
 ///~

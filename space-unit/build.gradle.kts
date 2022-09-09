@@ -9,7 +9,14 @@ val ossrhUsername: String by project
 val ossrhPassword: String by project
 
 group = "com.yifeistudio"
-version = "1.0-RELEASE"
+version = "1.0-SNAPSHOT"
+
+// Invalid POM: /com/yifeistudio/space-unit/1.0-RELEASE/space-unit-1.0-RELEASE.pom:
+// Project name missing,
+// Project description missing, Project URL missing,
+// License information missing,
+// SCM URL missing, Developer information missing
+
 
 repositories {
     mavenLocal()
@@ -18,8 +25,8 @@ repositories {
 
 dependencies {
 
-    compileOnly("com.fasterxml.jackson.core:jackson-core:2.13.3")
-    compileOnly("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+    compileOnly("com.fasterxml.jackson.core:jackson-core:2.13.4")
+    compileOnly("com.fasterxml.jackson.core:jackson-databind:2.13.4")
     testRuntimeOnly("com.fasterxml.jackson.core:jackson-core:2.13.3")
     testRuntimeOnly("com.fasterxml.jackson.core:jackson-databind:2.13.3")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")

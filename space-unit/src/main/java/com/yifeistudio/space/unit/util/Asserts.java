@@ -103,17 +103,17 @@ public final class Asserts {
             return;
         }
         isTrue(obj != null, exp);
-        if (obj instanceof String) {
-            String trimStr = ((String) obj).trim();
+        if (obj instanceof String str) {
+            String trimStr = str.trim();
             isTrue(trimStr.length() > 0, exp);
             return;
         }
-        if (obj instanceof Collection<?>) {
-            isTrue(!((Collection<?>) obj).isEmpty(), exp);
+        if (obj instanceof Collection<?> col) {
+            isTrue(!col.isEmpty(), exp);
             return;
         }
-        if (obj instanceof Map<?, ?>) {
-            isTrue(!((Map<?, ?>) obj).isEmpty(), exp);
+        if (obj instanceof Map<?, ?> map) {
+            isTrue(!map.isEmpty(), exp);
         }
     }
 
