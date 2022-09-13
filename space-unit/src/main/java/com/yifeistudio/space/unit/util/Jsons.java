@@ -71,7 +71,7 @@ public final class Jsons {
         try {
             T value = objectMapper.readValue(json, clz);
             return Optional.of(value);
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             return Optional.empty();
         }
     }

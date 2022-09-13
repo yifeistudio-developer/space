@@ -1,4 +1,4 @@
-package com.example.space.example
+package com.yifeistudio.space.example
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
@@ -8,6 +8,7 @@ class SpaceExampleApplicationTests {
 
     @Test
     fun contextLoads() {
+
     }
 
 }
