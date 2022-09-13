@@ -27,7 +27,7 @@ repositories {
 }
 
 val lombokVersion = "1.18.24"
-val spaceVersion = "1.0-SNAPSHOT"
+val spaceVersion = "2.0-SNAPSHOT"
 val springBootVersion = "2.7.3"
 
 dependencies {
