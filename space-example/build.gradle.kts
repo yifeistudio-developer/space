@@ -23,6 +23,7 @@ repositories {
 }
 
 dependencies {
+    implementation("com.yifeistudio:space-unit:2.0-SNAPSHOT")
     implementation("com.yifeistudio:space-starter:0.0.1-SNAPSHOT")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
