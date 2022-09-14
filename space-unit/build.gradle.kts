@@ -9,13 +9,8 @@ val ossrhUsername: String by project
 val ossrhPassword: String by project
 
 group = "com.yifeistudio"
-version = "2.0-SNAPSHOT"
+version = "2.0-RELEASE"
 
-// Invalid POM: /com/yifeistudio/space-unit/1.0-RELEASE/space-unit-1.0-RELEASE.pom:
-// Project name missing,
-// Project description missing, Project URL missing,
-// License information missing,
-// SCM URL missing, Developer information missing
 
 repositories {
     mavenLocal()
@@ -41,6 +36,29 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
+            pom {
+                name.set("space-unit")
+                description.set("the basic unit of Space project.")
+                url.set("https://github.com/yifeistudio-developer/space")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
+                }
+                developers {
+                    developer {
+                        id.set("yifeistudio.com")
+                        name.set("hongyi")
+                        email.set("develop@yifeistudio.com")
+                    }
+                    scm {
+                        connection.set("scm:git://github.com/yifeistudio-developer/space.git")
+                        developerConnection.set("scm:git://github.com/yifeistudio-developer/space.git")
+                        url.set("https://github.com/yifeistudio-developer/space")
+                    }
+                }
+            }
         }
 
     }
