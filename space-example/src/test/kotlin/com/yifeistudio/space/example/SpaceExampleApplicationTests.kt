@@ -8,7 +8,6 @@ class SpaceExampleApplicationTests {
 
     @Test
     fun contextLoads() {
-
     }
 
 }
