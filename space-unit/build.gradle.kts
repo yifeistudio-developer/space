@@ -42,6 +42,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
         }
+
     }
 
     // 仓库配置
