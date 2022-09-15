@@ -78,7 +78,7 @@ public final class Asserts {
      * @param msg 错误信息
      */
     public static void notNull(boolean condition, Object obj, String msg) {
-        notNull(obj, new AssertException(msg));
+        notNull(condition, obj, new AssertException(msg));
     }
 
     /**
