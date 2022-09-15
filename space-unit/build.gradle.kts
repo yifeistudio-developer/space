@@ -9,7 +9,7 @@ val ossrhUsername: String by project
 val ossrhPassword: String by project
 
 group = "com.yifeistudio"
-version = "2.0-RELEASE"
+version = "2.0.0-RELEASE"
 
 
 repositories {
@@ -30,6 +30,13 @@ dependencies {
 
 java {
     withSourcesJar()
+    withJavadocJar()
+}
+
+tasks.javadoc {
+    if (JavaVersion.current().isJava9Compatible) {
+        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+    }
 }
 
 publishing {
@@ -92,3 +99,4 @@ signing {
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
+
