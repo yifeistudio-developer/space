@@ -7,6 +7,8 @@ SPACE
 
 ## 二、工程结构
 
+![工程结构](./docs/structure.png)
+
 ### 1、工件列表
 
 - space-unit
