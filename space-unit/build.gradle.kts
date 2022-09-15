@@ -39,6 +39,15 @@ tasks.javadoc {
     }
 }
 
+// 签名
+signing {
+    sign(publishing.publications["mavenJava"])
+}
+
+tasks.getByName<Test>("test") {
+    useJUnitPlatform()
+}
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
@@ -90,13 +99,3 @@ publishing {
         }
     }
 }
-
-// 签名
-signing {
-    sign(publishing.publications["mavenJava"])
-}
-
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
-}
-
