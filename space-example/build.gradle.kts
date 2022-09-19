@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.6.6"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.6.10"
-    kotlin("plugin.spring") version "1.6.10"
+    id("org.springframework.boot") version "2.7.3"
+    id("io.spring.dependency-management") version "1.0.13.RELEASE"
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.spring") version "1.6.21"
 }
 
 group = "com.yifeistudio"
@@ -23,9 +23,10 @@ repositories {
 }
 
 dependencies {
-    implementation("com.yifeistudio:space-unit:2.0-SNAPSHOT")
+
     implementation("com.yifeistudio:space-starter:2.0.1-SNAPSHOT")
     implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-web-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly("org.projectlombok:lombok")
