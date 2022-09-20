@@ -26,7 +26,7 @@ dependencies {
 
     implementation("com.yifeistudio:space-starter:2.0.1-SNAPSHOT")
     implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.springframework.boot:spring-web-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly("org.projectlombok:lombok")
