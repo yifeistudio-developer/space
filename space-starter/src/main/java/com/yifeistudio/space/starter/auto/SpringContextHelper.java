@@ -1,4 +1,4 @@
-package com.yifeistudio.space.starter.config;
+package com.yifeistudio.space.starter.auto;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;

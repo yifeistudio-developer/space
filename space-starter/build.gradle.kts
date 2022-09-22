@@ -29,6 +29,7 @@ repositories {
 val lombokVersion = "1.18.24"
 val spaceVersion = "2.0.0-RELEASE"
 val springBootVersion = "2.7.3"
+val nacosVersion = "0.2.12"
 
 dependencies {
 
@@ -37,7 +38,7 @@ dependencies {
     compileOnly("org.springframework.boot:spring-boot:${springBootVersion}")
     compileOnly("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
     compileOnly("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
-
+    compileOnly("com.alibaba.boot:nacos-config-spring-boot-starter:${nacosVersion}")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 

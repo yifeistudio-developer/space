@@ -4,5 +4,5 @@ org.springframework.context.ApplicationListener=\
 
 # auto configuration.
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.yifeistudio.space.starter.config.LogbackConfig,\
-  com.yifeistudio.space.starter.config.SpringContextHelper
+  com.yifeistudio.space.starter.auto.SpringContextHelper,\
+  com.yifeistudio.space.starter.auto.NacosConfigurationHelper
