@@ -9,7 +9,7 @@ import com.yifeistudio.space.unit.model.Result;
  * @author : hongyi
  * created at 2022/4/19 - 10:14
  **/
-public final class AssertException extends SpaceException {
+public class AssertException extends SpaceException {
 
     private final boolean isTraceable;
 

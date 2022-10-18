@@ -8,7 +8,7 @@ import com.yifeistudio.space.unit.model.Result;
  * @author : hongyi
  * created at 2022/4/15 - 13:31
  **/
-public sealed class SpaceException extends RuntimeException permits AssertException{
+public class SpaceException extends RuntimeException {
 
     private final boolean isFatal;
 
