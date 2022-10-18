@@ -9,9 +9,9 @@ import java.util.*;
  * @author : hongyi
  * created at 2022/5/9 - 20:35
  **/
-public final class CollectionUtil {
+public final class Collections {
 
-    private CollectionUtil() {
+    private Collections() {
     }
 
     /**
@@ -66,7 +66,7 @@ public final class CollectionUtil {
         Asserts.notNull(collection, "collection is required nonNull");
         int colSize = collection.size();
         if (size <= 0 || colSize <= size) {
-            return Collections.singletonList(new ArrayList<>(collection));
+            return java.util.Collections.singletonList(new ArrayList<>(collection));
         }
         Object[] rawCol = collection.toArray();
         int len = rawCol.length;
