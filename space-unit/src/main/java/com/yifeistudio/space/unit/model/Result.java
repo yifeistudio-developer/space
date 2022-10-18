@@ -25,7 +25,7 @@ public record Result<T> (int code, String msg, T data) implements Serializable {
     }
 
     public static <T> Result<T> success(T data) {
-        return new Result<>(0, data);
+        return new Result<>(200, data);
     }
 
     public static <T> Result<T> fail(int code, String msg) {
