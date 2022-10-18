@@ -9,4 +9,6 @@ module space.unit {
     requires com.fasterxml.jackson.databind;
 
     exports com.yifeistudio.space.unit;
+    exports com.yifeistudio.space.unit.model;
+    exports com.yifeistudio.space.unit.util;
 }
