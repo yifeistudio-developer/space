@@ -4,5 +4,7 @@ spring:
 nacos:
   config:
     server-addr: console.yifeistudio.com:8848
+    data-id: space-example-config
+    group: space-example
   discovery:
     server-addr: console.yifeistudio.com:8848
