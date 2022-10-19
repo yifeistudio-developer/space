@@ -9,7 +9,7 @@ val ossrhUsername: String by project
 val ossrhPassword: String by project
 
 group = "com.yifeistudio"
-version = "2.0.0-RELEASE"
+version = "2.0.1-SNAPSHOT"
 
 
 repositories {
