@@ -12,4 +12,7 @@ module space.starter {
     requires spring.core;
     requires spring.beans;
 
+    exports com.yifeistudio.space.starter.auto;
+    exports com.yifeistudio.space.starter.config;
+    exports com.yifeistudio.space.starter.model;
 }
