@@ -1,5 +1,6 @@
-package com.yifeistudio.space.example.api
+package com.yifeistudio.space.example.controller
 
+import com.yifeistudio.space.unit.model.Result
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController
  * created at 2022/9/20 - 15:42
  **/
 @RestController
-class IndexController
-
-@GetMapping("/")
-fun index(): String {
-    return "xx"
+class IndexController {
+    @GetMapping("/abc")
+    fun index(): Result<Any> {
+        return Result.success()
+    }
 }
+
+
 
