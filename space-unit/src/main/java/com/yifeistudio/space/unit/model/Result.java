@@ -1,5 +1,7 @@
 package com.yifeistudio.space.unit.model;
 
+import com.yifeistudio.space.unit.util.Results;
+
 import java.io.Serializable;
 
 /**
@@ -10,7 +12,7 @@ import java.io.Serializable;
  * @author : hongyi
  * created at 2022/4/15 - 13:33
  **/
-public record Result<T> (int code, String msg, T data) implements Serializable {
+public record Result<T>(int code, String msg, T data) implements Serializable {
 
     public Result(int code, String msg) {
         this(code, msg, null);
@@ -25,7 +27,7 @@ public record Result<T> (int code, String msg, T data) implements Serializable {
     }
 
     public static <T> Result<T> success(T data) {
-        return new Result<>(200, data);
+        return new Result<>(Results.CODE_OK, data);
     }
 
     public static <T> Result<T> fail(int code, String msg) {
