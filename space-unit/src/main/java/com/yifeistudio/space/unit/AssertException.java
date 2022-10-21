@@ -1,6 +1,7 @@
 package com.yifeistudio.space.unit;
 
 import com.yifeistudio.space.unit.model.Result;
+import com.yifeistudio.space.unit.util.Results;
 
 /**
  * 断言异常
@@ -13,14 +14,12 @@ public class AssertException extends SpaceException {
 
     private final boolean isTraceable;
 
-    private static final int RESULT_CODE = 400;
-
     public AssertException(String msg) {
         this(msg, false);
     }
 
     public AssertException(String msg, boolean isTraceable) {
-        super(Result.fail(RESULT_CODE, msg), isTraceable);
+        super(Result.fail(Results.CODE_BAD_REQUEST, msg), isTraceable);
         this.isTraceable = isTraceable;
     }
 
