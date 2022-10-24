@@ -15,6 +15,7 @@ public final class Results {
 
     /**
      * 请求成功
+     * [200, 300)
      */
     public static final int CODE_OK = 200;
 
@@ -30,6 +31,7 @@ public final class Results {
 
     /**
      * 参数错误
+     * [400, 500)
      */
     public static final int CODE_BAD_REQUEST = 400;
 
@@ -40,6 +42,7 @@ public final class Results {
 
     /**
      * 未知异常
+     * [500, 1000)
      */
     public static final int CODE_UNKNOWN_ERROR = 500;
 
