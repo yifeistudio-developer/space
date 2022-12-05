@@ -1,5 +1,7 @@
 package com.yifeistudio.space.unit.model;
 
+import com.yifeistudio.space.unit.util.Asserts;
+
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
@@ -15,6 +17,7 @@ public interface Promise<T> {
     AtomicReference<ExecutorService> _EXECUTOR = new AtomicReference<>();
 
     static void setExecutorService(ExecutorService executorService) {
+        Asserts.notNull(executorService, "executor service must not be null.");
         _EXECUTOR.set(executorService);
     }
 
