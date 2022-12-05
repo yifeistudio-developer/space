@@ -1,5 +1,7 @@
 package com.yifeistudio.space.unit.model;
 
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
 /**
@@ -9,6 +11,33 @@ import java.util.function.Function;
  * created at 2022/4/29 - 12:49
  **/
 public interface Promise<T> {
+
+    AtomicReference<ExecutorService> _EXECUTOR = new AtomicReference<>();
+
+    static void setExecutorService(ExecutorService executorService) {
+        _EXECUTOR.set(executorService);
+    }
+
+    static ExecutorService getExecutorService() {
+        ExecutorService executorService = _EXECUTOR.get();
+        if (executorService != null) {
+            return executorService;
+        }
+        int processorNum = Runtime.getRuntime().availableProcessors();
+        int coreSize = processorNum + 1;
+        BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
+        executorService = new ThreadPoolExecutor(coreSize,
+                2 * coreSize,
+                5,
+                TimeUnit.MINUTES,
+                blockingQueue, r -> {
+            Thread thread = new Thread(r);
+            thread.setName("default-promise-thread-" + thread.getId());
+            return thread;
+        });
+        return _EXECUTOR.compareAndSet(null, executorService) ? executorService : _EXECUTOR.get();
+    }
+
 
 
     /**
