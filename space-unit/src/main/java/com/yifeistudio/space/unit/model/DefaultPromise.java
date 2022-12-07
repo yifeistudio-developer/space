@@ -55,18 +55,19 @@ public class DefaultPromise<T> implements Promise<T> {
         this.executorService.submit(() -> {
             try {
                 T result = this.get();
-                if (this.flag == SUCCEED) {
+                if (successCallback != null) {
                     next.result = successCallback.apply(result);
-                    return;
                 }
-                if (failCallback != null) {
-                    next.result = failCallback.apply(this.error);
-                }
+                next.flag = SUCCEED;
             } catch (Throwable throwable) {
-                next.error = throwable;
+                this.error = throwable;
+                if (failCallback == null) {
+                    throw throwable;
+                }
+                next.result = failCallback.apply(throwable);
             } finally {
                 synchronized (next) {
-                    next.flag = next.error == null ? SUCCEED : FAILED;
+                    next.flag = next.flag == SUCCEED ? SUCCEED : FAILED;
                     next.notifyAll();
                 }
             }
