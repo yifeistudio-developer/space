@@ -14,14 +14,14 @@ class PromiseTests {
 
     @Test
     void promiseTest() {
-        Promise.empty().reject(val -> {
+        Promise<Throwable> reject = Promise.empty().reject(val -> {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
             return val;
-        }).get();
+        });
 
     }
 

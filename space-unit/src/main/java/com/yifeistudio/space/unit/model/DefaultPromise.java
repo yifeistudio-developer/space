@@ -69,6 +69,7 @@ public class DefaultPromise<T> implements Promise<T> {
                 synchronized (next) {
                     next.flag = next.flag == SUCCEED ? SUCCEED : FAILED;
                     next.notifyAll();
+                    this.notifyAll();
                 }
             }
         });
