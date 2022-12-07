@@ -1,6 +1,6 @@
 package com.yifeistudio.space.unit.util;
 
-import com.yifeistudio.space.unit.model.DefaultPromise;
+import com.yifeistudio.space.unit.model.Promise;
 import org.junit.jupiter.api.Test;
 
 
@@ -14,7 +14,7 @@ class PromiseTests {
 
     @Test
     void promiseTest() {
-        DefaultPromise.empty().fail(val -> {
+        Promise.empty().reject(val -> {
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {

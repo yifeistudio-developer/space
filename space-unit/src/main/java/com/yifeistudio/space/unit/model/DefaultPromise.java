@@ -4,7 +4,6 @@ import com.yifeistudio.space.unit.util.Asserts;
 
 import java.util.concurrent.ExecutorService;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * 默认实现
@@ -13,16 +12,6 @@ import java.util.function.Supplier;
  * created at 2022/4/29 - 19:41
  **/
 public class DefaultPromise<T> implements Promise<T> {
-
-    /**
-     * 执行成功
-     */
-    private final byte SUCCEED = 1;
-
-    /**
-     * 执行失败
-     */
-    private final byte FAILED = -1;
 
     /**
      * 执行标识
@@ -46,6 +35,11 @@ public class DefaultPromise<T> implements Promise<T> {
     private final ExecutorService executorService;
 
     public DefaultPromise() {
+        this((byte) 0);
+    }
+
+    public DefaultPromise(byte flag) {
+        this.flag = flag;
         this.executorService = Promise.getExecutorService();
     }
 
@@ -54,91 +48,30 @@ public class DefaultPromise<T> implements Promise<T> {
         this.executorService = executorService;
     }
 
-    public static <T> Promise<T> of(Supplier<T> supplier) {
-        DefaultPromise<T> defaultPromise = new DefaultPromise<>();
-        defaultPromise.executorService.submit(() -> {
-            try {
-                defaultPromise.result = supplier.get();
-            } catch (Throwable throwable) {
-                defaultPromise.error = throwable;
-            } finally {
-                synchronized (defaultPromise) {
-                    defaultPromise.flag = defaultPromise.error == null
-                            ? defaultPromise.SUCCEED : defaultPromise.FAILED;
-                }
-            }
-        });
-        return defaultPromise;
-    }
-
-    @Override
-    public <V> Promise<V> success(Function<? super T, ? extends V> callback) {
-        DefaultPromise<V> defaultPromise = new DefaultPromise<>(this.executorService);
-        defaultPromise.executorService.submit(() -> {
-            try {
-                defaultPromise.result = callback.apply(this.get());
-            } catch (Throwable throwable) {
-                defaultPromise.error = throwable;
-            } finally {
-                synchronized (defaultPromise) {
-                    defaultPromise.flag = defaultPromise.error == null ? SUCCEED : FAILED;
-                    defaultPromise.notifyAll();
-                }
-            }
-        });
-        return defaultPromise;
-    }
-
-    @Override
-    public <V> Promise<V> fail(Function<? super Throwable, ? extends V> callback) {
-        DefaultPromise<V> defaultPromise = new DefaultPromise<>(this.executorService);
-        defaultPromise.executorService.submit(() -> {
-            try {
-                this.get();
-                if (this.flag == FAILED) {
-                    defaultPromise.result = callback.apply(this.error);
-                }
-            } catch (Throwable throwable) {
-                defaultPromise.error = throwable;
-            } finally {
-                synchronized (defaultPromise) {
-                    defaultPromise.flag = defaultPromise.error == null ? SUCCEED : FAILED;
-                    defaultPromise.notifyAll();
-                }
-            }
-        });
-        return defaultPromise;
-    }
-
-
     @Override
     public <V> Promise<V> then(Function<? super T, ? extends V> successCallback,
                                Function<? super Throwable, ? extends V> failCallback) {
-        DefaultPromise<V> defaultPromise = new DefaultPromise<>(this.executorService);
-        defaultPromise.executorService.submit(() -> {
+        DefaultPromise<V> next = new DefaultPromise<>(this.executorService);
+        this.executorService.submit(() -> {
             try {
                 T result = this.get();
                 if (this.flag == SUCCEED) {
-                    defaultPromise.result = successCallback.apply(result);
-                } else {
-                    defaultPromise.result = failCallback.apply(this.error);
+                    next.result = successCallback.apply(result);
+                    return;
+                }
+                if (failCallback != null) {
+                    next.result = failCallback.apply(this.error);
                 }
             } catch (Throwable throwable) {
-                defaultPromise.error = throwable;
+                next.error = throwable;
             } finally {
-                synchronized (defaultPromise) {
-                    defaultPromise.flag = defaultPromise.error == null ? SUCCEED : FAILED;
-                    defaultPromise.notifyAll();
+                synchronized (next) {
+                    next.flag = next.error == null ? SUCCEED : FAILED;
+                    next.notifyAll();
                 }
             }
         });
-        return defaultPromise;
-    }
-
-    public static <T> Promise<T> empty() {
-        DefaultPromise<T> defaultPromise = new DefaultPromise<>();
-        defaultPromise.flag = defaultPromise.SUCCEED;
-        return defaultPromise;
+        return next;
     }
 
 

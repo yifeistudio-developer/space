@@ -14,6 +14,16 @@ import java.util.function.Function;
  **/
 public interface Promise<T> {
 
+    /**
+     * 执行成功
+     */
+    byte SUCCEED = 1;
+
+    /**
+     * 执行失败
+     */
+    byte FAILED = -1;
+
     AtomicReference<ExecutorService> _EXECUTOR = new AtomicReference<>();
 
     static void setExecutorService(ExecutorService executorService) {
@@ -42,7 +52,6 @@ public interface Promise<T> {
     }
 
 
-
     /**
      * 当线程任务执行成功时-执行回调
      *
@@ -50,7 +59,9 @@ public interface Promise<T> {
      * @param <V>      新的promise 类型
      * @return 新的promise
      */
-    <V> Promise<V> success(Function<? super T, ? extends V> callback);
+    default <V> Promise<V> resolve(Function<? super T, ? extends V> callback) {
+        return then(callback, null);
+    }
 
     /**
      * 当线程任务执行失败时-执行回调
@@ -59,7 +70,9 @@ public interface Promise<T> {
      * @param <V>      新的promise 类型
      * @return 新的promise
      */
-    <V> Promise<V> fail(Function<? super Throwable, ? extends V> callback);
+    default <V> Promise<V> reject(Function<? super Throwable, ? extends V> callback) {
+        return then(null, callback);
+    }
 
     /**
      * 当线程任务执行成功时-执行成功/失败时回调
@@ -71,6 +84,12 @@ public interface Promise<T> {
      */
     <V> Promise<V> then(Function<? super T, ? extends V> successCallback,
                         Function<? super Throwable, ? extends V> failCallback);
+
+
+    static <T> Promise<T> empty() {
+        return new DefaultPromise<>(Promise.SUCCEED);
+    }
+
 
     /**
      * 是否已经结束
