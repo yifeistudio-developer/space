@@ -14,14 +14,25 @@ class PromiseTests {
 
     @Test
     void promiseTest() {
-        Promise<Throwable> reject = Promise.empty().reject(val -> {
+        String valx = Promise.<String>empty().resolve(val -> {
             try {
                 Thread.sleep(3000);
+                System.out.println("我执行了3秒");
+                throw new RuntimeException("我报错了");
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            return val;
-        });
+        }).resolve(val -> {
+            try {
+                Thread.sleep(4000);
+                System.out.println("我执行了4秒");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            return "";
+        }).get();
+
+
 
     }
 

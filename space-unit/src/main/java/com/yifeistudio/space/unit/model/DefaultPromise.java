@@ -55,21 +55,19 @@ public class DefaultPromise<T> implements Promise<T> {
         this.executorService.submit(() -> {
             try {
                 T result = this.get();
-                if (successCallback != null) {
+                if (this.flag == SUCCEED && successCallback != null) {
                     next.result = successCallback.apply(result);
+                    return;
                 }
-                next.flag = SUCCEED;
-            } catch (Throwable throwable) {
-                this.error = throwable;
-                if (failCallback == null) {
-                    throw throwable;
+                if (this.flag == FAILED && failCallback != null) {
+                    next.result = failCallback.apply(this.error);
                 }
-                next.result = failCallback.apply(throwable);
+            } catch (Throwable t) {
+                next.error = t;
             } finally {
                 synchronized (next) {
-                    next.flag = next.flag == SUCCEED ? SUCCEED : FAILED;
+                    next.flag = next.error == null ? SUCCEED : FAILED;
                     next.notifyAll();
-                    this.notifyAll();
                 }
             }
         });
@@ -81,7 +79,6 @@ public class DefaultPromise<T> implements Promise<T> {
     public boolean isDone() {
         return flag != 0;
     }
-
 
     @Override
     public synchronized T get() {

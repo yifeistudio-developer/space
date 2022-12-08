@@ -51,7 +51,6 @@ public interface Promise<T> {
         return _EXECUTOR.compareAndSet(null, executorService) ? executorService : _EXECUTOR.get();
     }
 
-
     /**
      * 当线程任务执行成功时-执行回调
      *
