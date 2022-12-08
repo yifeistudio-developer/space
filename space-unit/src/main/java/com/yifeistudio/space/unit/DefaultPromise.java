@@ -44,20 +44,20 @@ public class DefaultPromise<T> implements Promise<T> {
     }
 
     public DefaultPromise(byte flag, Throwable t) {
-        this.flag = flag;
-        this.error = t;
-        this.executorService = Resources.getExecutorService();
+        this(flag, t, Resources.getExecutorService());
     }
 
-    public DefaultPromise(ExecutorService executorService) {
+    public DefaultPromise(byte flag, Throwable t, ExecutorService executorService) {
         Asserts.notNull(executorService, "executorService is required nonNull");
+        this.flag = flag;
+        this.error = t;
         this.executorService = executorService;
     }
 
     @Override
     public <V> Promise<V> then(Function<? super T, ? extends V> successCallback,
                                Function<? super Throwable, ? extends V> failCallback) {
-        DefaultPromise<V> next = new DefaultPromise<>(this.executorService);
+        DefaultPromise<V> next = new DefaultPromise<>((byte) 0, null, this.executorService);
         this.executorService.submit(() -> {
             try {
                 T result = this.get();
