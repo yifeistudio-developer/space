@@ -1,6 +1,6 @@
 package com.yifeistudio.space.unit.util;
 
-import com.yifeistudio.space.unit.model.Promise;
+import com.yifeistudio.space.unit.Promise;
 import org.junit.jupiter.api.Test;
 
 

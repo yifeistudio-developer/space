@@ -1,4 +1,4 @@
-package com.yifeistudio.space.unit.model;
+package com.yifeistudio.space.unit;
 
 import com.yifeistudio.space.unit.util.Asserts;
 
