@@ -1,6 +1,7 @@
 package com.yifeistudio.space.unit;
 
 import com.yifeistudio.space.unit.util.Asserts;
+import com.yifeistudio.space.unit.util.Resources;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -45,22 +46,7 @@ public interface Promise<T> {
      * @return 执行器
      */
     static ExecutorService getExecutorService() {
-        ExecutorService executorService = _EXECUTOR.get();
-        if (executorService != null) {
-            return executorService;
-        }
-        int processorNum = Runtime.getRuntime().availableProcessors();
-        int coreSize = processorNum + 1;
-        BlockingQueue<Runnable> blockingQueue = new LinkedBlockingQueue<>();
-        executorService = new ThreadPoolExecutor(coreSize,
-                2 * coreSize,
-                5,
-                TimeUnit.MINUTES,
-                blockingQueue, r -> {
-            Thread thread = new Thread(r);
-            thread.setName("default-promise-thread-" + thread.getId());
-            return thread;
-        });
+        ExecutorService executorService = Resources.getExecutorService();
         return _EXECUTOR.compareAndSet(null, executorService) ? executorService : _EXECUTOR.get();
     }
 
