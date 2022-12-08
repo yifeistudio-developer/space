@@ -1,10 +1,5 @@
 package com.yifeistudio.space.unit;
 
-import com.yifeistudio.space.unit.util.Asserts;
-import com.yifeistudio.space.unit.util.Resources;
-
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
 /**
@@ -25,30 +20,6 @@ public interface Promise<T> {
      */
     byte FAILED = -1;
 
-    /**
-     * 执行器
-     */
-    AtomicReference<ExecutorService> _EXECUTOR = new AtomicReference<>();
-
-    /**
-     * 配置执行器
-     *
-     * @param executorService 执行器
-     */
-    static void setExecutorService(ExecutorService executorService) {
-        Asserts.notNull(executorService, "executor service must not be null.");
-        _EXECUTOR.set(executorService);
-    }
-
-    /**
-     * 获取执行器
-     *
-     * @return 执行器
-     */
-    static ExecutorService getExecutorService() {
-        ExecutorService executorService = Resources.getExecutorService();
-        return _EXECUTOR.compareAndSet(null, executorService) ? executorService : _EXECUTOR.get();
-    }
 
     /**
      * 当线程任务执行成功时-执行回调

@@ -1,6 +1,7 @@
 package com.yifeistudio.space.unit;
 
 import com.yifeistudio.space.unit.util.Asserts;
+import com.yifeistudio.space.unit.util.Resources;
 
 import java.util.concurrent.ExecutorService;
 import java.util.function.Function;
@@ -45,7 +46,7 @@ public class DefaultPromise<T> implements Promise<T> {
     public DefaultPromise(byte flag, Throwable t) {
         this.flag = flag;
         this.error = t;
-        this.executorService = Promise.getExecutorService();
+        this.executorService = Resources.getExecutorService();
     }
 
     public DefaultPromise(ExecutorService executorService) {
