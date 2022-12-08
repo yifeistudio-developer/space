@@ -39,7 +39,12 @@ public class DefaultPromise<T> implements Promise<T> {
     }
 
     public DefaultPromise(byte flag) {
+        this(flag, null);
+    }
+
+    public DefaultPromise(byte flag, Throwable t) {
         this.flag = flag;
+        this.error = t;
         this.executorService = Promise.getExecutorService();
     }
 

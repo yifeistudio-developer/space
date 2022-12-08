@@ -24,13 +24,26 @@ public interface Promise<T> {
      */
     byte FAILED = -1;
 
+    /**
+     * 执行器
+     */
     AtomicReference<ExecutorService> _EXECUTOR = new AtomicReference<>();
 
+    /**
+     * 配置执行器
+     *
+     * @param executorService 执行器
+     */
     static void setExecutorService(ExecutorService executorService) {
         Asserts.notNull(executorService, "executor service must not be null.");
         _EXECUTOR.set(executorService);
     }
 
+    /**
+     * 获取执行器
+     *
+     * @return 执行器
+     */
     static ExecutorService getExecutorService() {
         ExecutorService executorService = _EXECUTOR.get();
         if (executorService != null) {
@@ -69,7 +82,7 @@ public interface Promise<T> {
      * @param <V>      新的promise 类型
      * @return 新的promise
      */
-    default <V> Promise<V> reject(Function<? super Throwable, ? extends V> callback) {
+    default <V> Promise<V> handle(Function<? super Throwable, ? extends V> callback) {
         return then(null, callback);
     }
 
@@ -85,10 +98,23 @@ public interface Promise<T> {
                         Function<? super Throwable, ? extends V> failCallback);
 
 
+    /**
+     * 返回空Promise
+     *
+     * @return <空>Promise
+     * @param <T> 类型
+     */
     static <T> Promise<T> empty() {
         return new DefaultPromise<>(Promise.SUCCEED);
     }
 
+    static <V> Promise<V> resolve(V value) {
+        return empty().resolve(val -> value);
+    }
+
+    static <V> Promise<V> reject(Throwable t) {
+        return new DefaultPromise<>(Promise.FAILED, t);
+    }
 
     /**
      * 是否已经结束
