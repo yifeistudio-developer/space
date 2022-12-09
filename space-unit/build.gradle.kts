@@ -37,7 +37,10 @@ java {
 
 tasks.javadoc {
     if (JavaVersion.current().isJava9Compatible) {
-        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+        val sps = (options as StandardJavadocDocletOptions)
+        sps.addBooleanOption("html5", true)
+        sps.addStringOption("Xdoclint:none", "-quiet")
+        sps.addStringOption("encoding", "UTF-8")
     }
 }
 

@@ -39,36 +39,17 @@ public final class Resources {
                     TimeUnit.MINUTES,
                     blockingQueue, r -> {
                 Thread thread = new Thread(r);
-                thread.setName("default-promise-thread-" + thread.getId());
+                thread.setName("default-public-thread-" + thread.getId());
                 return thread;
             });
-            // TODO: 2022/12/8 register jvm shutdown hook
-
+            // 回收资源
+            Runtime.getRuntime()
+                    .addShutdownHook(new Thread(() -> {
+                        if (_EXECUTOR != null && !_EXECUTOR.isShutdown()) {
+                            _EXECUTOR.shutdown();
+                        }
+                    }));
         }
-
         return _EXECUTOR;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
