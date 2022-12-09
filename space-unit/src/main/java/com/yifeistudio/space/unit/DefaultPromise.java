@@ -35,18 +35,39 @@ public class DefaultPromise<T> implements Promise<T> {
      */
     private final ExecutorService executorService;
 
+    /**
+     * 默认Promise
+     */
     public DefaultPromise() {
         this((byte) 0);
     }
 
+    /**
+     * 默认Promise
+     *
+     * @param flag 执行状态
+     */
     public DefaultPromise(byte flag) {
         this(flag, null);
     }
 
+    /**
+     * 默认Promise
+     *
+     * @param flag 执行状态
+     * @param t 异常
+     */
     public DefaultPromise(byte flag, Throwable t) {
         this(flag, t, Resources.getExecutorService());
     }
 
+    /**
+     * 默认Promise
+     *
+     * @param flag 执行状态
+     * @param t 异常
+     * @param executorService 执行器
+     */
     public DefaultPromise(byte flag, Throwable t, ExecutorService executorService) {
         Asserts.notNull(executorService, "executorService is required nonNull");
         this.flag = flag;
@@ -54,6 +75,13 @@ public class DefaultPromise<T> implements Promise<T> {
         this.executorService = executorService;
     }
 
+    /**
+     *
+     * @param successCallback 成功回调函数
+     * @param failCallback    失败回调函数
+     * @return 新Promise对象
+     * @param <V> 新Promise类型
+     */
     @Override
     public <V> Promise<V> then(Function<? super T, ? extends V> successCallback,
                                Function<? super Throwable, ? extends V> failCallback) {
@@ -81,11 +109,22 @@ public class DefaultPromise<T> implements Promise<T> {
     }
 
 
+    /**
+     * 判断任务是否已经完成
+     * <p/>
+     * 成功或者失败
+     * @return 是否已结束
+     */
     @Override
     public boolean isDone() {
         return flag != 0;
     }
 
+    /**
+     * 获取执行结果
+     *
+     * @return 执行结果
+     */
     @Override
     public synchronized T get() {
         while (flag == 0) {
@@ -100,3 +139,4 @@ public class DefaultPromise<T> implements Promise<T> {
     }
 
 }
+///～

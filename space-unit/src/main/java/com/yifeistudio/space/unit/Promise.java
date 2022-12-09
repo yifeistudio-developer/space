@@ -65,10 +65,24 @@ public interface Promise<T> {
         return new DefaultPromise<>(Promise.SUCCEED);
     }
 
+    /**
+     * Resolve
+     *
+     * @param value 结果
+     * @return 返回已成功结束Promise
+     * @param <V> 结果类型
+     */
     static <V> Promise<V> resolve(V value) {
         return empty().resolve(val -> value);
     }
 
+    /**
+     * Reject
+     *
+     * @param t 异常
+     * @return 返回已失败promise
+     * @param <V> 结果类型
+     */
     static <V> Promise<V> reject(Throwable t) {
         return new DefaultPromise<>(Promise.FAILED, t);
     }

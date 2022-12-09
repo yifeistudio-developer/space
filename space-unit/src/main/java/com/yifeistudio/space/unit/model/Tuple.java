@@ -3,7 +3,7 @@ package com.yifeistudio.space.unit.model;
 import java.io.Serializable;
 
 /**
- * 元组
+ * 2元，元组
  *
  * @author : hongyi
  * created at 2022/4/22 - 10:52

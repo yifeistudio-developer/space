@@ -1,6 +1,7 @@
 package com.yifeistudio.space.unit.model;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * 分页信息
@@ -8,6 +9,8 @@ import java.util.List;
  * @author : hongyi
  * created at 2022/10/18 - 14:38
  **/
-public record Page<T>(int count, List<T> records) {
-
+public record Page<T>(int count, Collection<T> records) implements Serializable {
+    public static <T> Page<T> of(int count, Collection<T> records) {
+        return new Page<>(count, records);
+    }
 }
