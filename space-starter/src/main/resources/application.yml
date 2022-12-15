@@ -1,0 +1,3 @@
+nacos:
+  config:
+    server-addr: console.yifeistudio.com:8848

@@ -4,6 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.context.EnvironmentAware;
+import org.springframework.core.env.Environment;
+
+import javax.annotation.Resource;
 
 /**
  * Space listener
@@ -14,6 +18,9 @@ import org.springframework.context.ApplicationListener;
 @Slf4j
 class SpaceListener implements ApplicationListener<ApplicationEvent> {
 
+
+    @Resource
+    private Environment environment;
     /**
      * Handle an application event.
      *
@@ -23,6 +30,7 @@ class SpaceListener implements ApplicationListener<ApplicationEvent> {
     public void onApplicationEvent(ApplicationEvent event) {
         if (event instanceof ApplicationEnvironmentPreparedEvent) {
             log.info("space-starter is testing...");
+
         }
     }
 }

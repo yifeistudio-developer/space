@@ -1,5 +1,7 @@
 package com.yifeistudio.space.unit.util;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * 无Spring 环境测试
  *
@@ -9,4 +11,8 @@ package com.yifeistudio.space.unit.util;
 class NoSpringTests {
 
 
+    @Test
+    void jvmTest() {
+
+    }
 }
