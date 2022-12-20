@@ -36,6 +36,7 @@ dependencies {
     api("com.yifeistudio:space-unit:${spaceVersion}")
 
     compileOnly("org.springframework.boot:spring-boot:${springBootVersion}")
+
     compileOnly("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
     compileOnly("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
     compileOnly("com.alibaba.boot:nacos-config-spring-boot-starter:${nacosVersion}")
@@ -50,6 +51,13 @@ dependencies {
 
 java {
     withSourcesJar()
+}
+
+tasks.jar {
+    manifest {
+        attributes(mapOf("Implementation-Title" to project.name,
+            "Implementation-Version" to project.version))
+    }
 }
 
 publishing {

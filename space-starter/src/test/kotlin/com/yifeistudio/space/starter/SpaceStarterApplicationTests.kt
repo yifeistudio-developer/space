@@ -9,8 +9,11 @@ class SpaceStarterApplicationTests {
 
     @Test
     fun jvmTest () {
-        var context = SpringContextHelper.getApplicationContext().get()
-        println(context)
+        val applicationContext = SpringContextHelper.getApplicationContext()
+        applicationContext.ifPresent {
+            value -> println(value)
+        }
+
     }
 
 }

@@ -6,3 +6,4 @@
   \ '/ /  | |  | |  | \__., | |  `'.'. | |, | \_/ |,| \__/  |  | || \__. |
 [\_:  /  [___][___]  '.__.'[___][\__) )\__/ '.__.'_/ '.__.;__][___]'.__.'
  \__.'
+:: Based on SpringBoot ${spring-boot.formatted-version} :: ${application.title} :: ${application.formatted-version}
