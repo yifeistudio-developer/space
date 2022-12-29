@@ -4,7 +4,7 @@ import com.yifeistudio.space.starter.auto.SpringContextHelper
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
-@SpringBootTest(classes = [ApplicationTests::class])
+@SpringBootTest
 class SpaceStarterApplicationTests {
 
     @Test
@@ -13,7 +13,6 @@ class SpaceStarterApplicationTests {
         applicationContext.ifPresent {
             value -> println(value)
         }
-
     }
 
 }
