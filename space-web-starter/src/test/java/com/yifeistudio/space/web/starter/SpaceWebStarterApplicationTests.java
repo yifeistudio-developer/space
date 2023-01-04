@@ -1,4 +1,4 @@
-package com.yifeistudio.web.starter;
+package com.yifeistudio.space.web.starter;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
