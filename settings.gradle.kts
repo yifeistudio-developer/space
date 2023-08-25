@@ -4,5 +4,6 @@ include(
     "space-starter",
     "space-web-starter",
     "space-data-starter",
-    "space-message-starter"
+    "space-message-starter",
+    "space-example"
 )
