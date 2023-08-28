@@ -12,7 +12,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class SpaceApplication {
 
     public static ConfigurableApplicationContext run(Class<?> clz, String[] args) {
-        // do some thing...
+        // do something...
         return SpringApplication.run(clz, args);
     }
 
