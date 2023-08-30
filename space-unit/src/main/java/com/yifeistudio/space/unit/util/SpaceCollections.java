@@ -78,6 +78,7 @@ public final class SpaceCollections {
             tail = Math.min(p + size, len);
             List<T> objs = new ArrayList<>();
             for (int i = p; i < tail; i++) {
+                //noinspection unchecked
                 objs.add((T) rawCol[i]);
             }
             rlt.add(objs);

@@ -66,7 +66,7 @@ public final class Results {
     /**
      * 系统内部错误
      */
-    public static final Result<?> INTERNAL_ERROR = Result.fail(CODE_UNKNOWN_ERROR, "你干嘛啊哈～哎呦～你好烦～");
+    public static final Result<?> INTERNAL_ERROR = Result.fail(CODE_UNKNOWN_ERROR, "你干嘛啊哈～ 哎呦～你好烦～");
 
 
 }

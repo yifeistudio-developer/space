@@ -105,7 +105,7 @@ public final class Asserts {
         isTrue(obj != null, exp);
         if (obj instanceof String str) {
             String trimStr = str.trim();
-            isTrue(trimStr.length() > 0, exp);
+            isTrue(!trimStr.isEmpty(), exp);
             return;
         }
         if (obj instanceof Collection<?> col) {
