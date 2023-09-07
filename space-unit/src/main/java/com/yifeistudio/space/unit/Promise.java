@@ -1,5 +1,7 @@
 package com.yifeistudio.space.unit;
 
+import com.yifeistudio.space.unit.model.Constants;
+
 import java.util.function.Function;
 
 /**
@@ -9,17 +11,6 @@ import java.util.function.Function;
  * created at 2022/4/29 - 12:49
  **/
 public interface Promise<T> {
-
-    /**
-     * 执行成功
-     */
-    byte SUCCEED = 1;
-
-    /**
-     * 执行失败
-     */
-    byte FAILED = -1;
-
 
     /**
      * 当线程任务执行成功时-执行回调
@@ -62,7 +53,7 @@ public interface Promise<T> {
      * @param <T> 类型
      */
     static <T> Promise<T> empty() {
-        return new DefaultPromise<>(Promise.SUCCEED);
+        return new DefaultPromise<>(Constants.SUCCEED);
     }
 
     /**
@@ -84,7 +75,7 @@ public interface Promise<T> {
      * @param <V> 结果类型
      */
     static <V> Promise<V> reject(Throwable t) {
-        return new DefaultPromise<>(Promise.FAILED, t);
+        return new DefaultPromise<>(Constants.FAILED, t);
     }
 
     /**

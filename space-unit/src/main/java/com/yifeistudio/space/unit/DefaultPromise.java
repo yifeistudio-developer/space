@@ -1,5 +1,6 @@
 package com.yifeistudio.space.unit;
 
+import com.yifeistudio.space.unit.model.Constants;
 import com.yifeistudio.space.unit.util.Asserts;
 import com.yifeistudio.space.unit.util.Resources;
 
@@ -89,18 +90,18 @@ public class DefaultPromise<T> implements Promise<T> {
         this.executorService.submit(() -> {
             try {
                 T result = this.get();
-                if (this.flag == SUCCEED && successCallback != null) {
+                if (this.flag == Constants.SUCCEED && successCallback != null) {
                     next.result = successCallback.apply(result);
                     return;
                 }
-                if (this.flag == FAILED && failCallback != null) {
+                if (this.flag == Constants.FAILED && failCallback != null) {
                     next.result = failCallback.apply(this.error);
                 }
             } catch (Throwable t) {
                 next.error = t;
             } finally {
                 synchronized (next) {
-                    next.flag = next.error == null ? SUCCEED : FAILED;
+                    next.flag = next.error == null ? Constants.SUCCEED : Constants.FAILED;
                     next.notifyAll();
                 }
             }

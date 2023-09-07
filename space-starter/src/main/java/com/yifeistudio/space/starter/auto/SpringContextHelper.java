@@ -1,6 +1,8 @@
 package com.yifeistudio.space.starter.auto;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -18,10 +20,16 @@ import java.util.Optional;
 @Component
 public class SpringContextHelper implements ApplicationContextAware {
 
+    /**
+     * -- GETTER --
+     *  获取Spring 上下文
+     *
+     */
+    @Getter
     private static Optional<ApplicationContext> applicationContext = Optional.empty();
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(@NotNull ApplicationContext applicationContext) throws BeansException {
         SpringContextHelper.applicationContext = Optional.of(applicationContext);
     }
 
@@ -34,15 +42,6 @@ public class SpringContextHelper implements ApplicationContextAware {
      */
     public static <T> Optional<T> getBean(Class<T> clz) {
         return applicationContext.map(context -> context.getBean(clz));
-    }
-
-    /**
-     * 获取Spring 上下文
-     *
-     * @return Spring 上下文
-     */
-    public static Optional<ApplicationContext> getApplicationContext() {
-        return applicationContext;
     }
 
 }
