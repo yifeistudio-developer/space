@@ -27,7 +27,7 @@ class SpaceEnvironmentPostProcessor implements EnvironmentPostProcessor {
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
 
         Map<String, Object> systemEnvironment = environment.getSystemEnvironment();
-        systemEnvironment.put("spring.banner.location", "banner.txt");
+        systemEnvironment.put("spring.banner.location", "yi-banner.txt");
 
         System.out.println("这里执行了。。。。");
     }

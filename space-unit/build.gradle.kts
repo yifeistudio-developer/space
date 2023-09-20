@@ -11,8 +11,8 @@ val ossrhPassword: String by project
 group = "com.yifeistudio"
 version = "2.0.1-RELEASE"
 
-val jacksonVersion = "2.14.0"
-val junitVersion = "5.9.0"
+val jacksonVersion = "2.15.2"
+val junitVersion = "5.10.0"
 
 repositories {
     mavenLocal()
