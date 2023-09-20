@@ -9,9 +9,9 @@ import java.util.*;
  * @author : hongyi
  * created at 2022/5/9 - 20:35
  **/
-public final class SpaceCollections {
+public final class XCollections {
 
-    private SpaceCollections() {
+    private XCollections() {
     }
 
     /**
