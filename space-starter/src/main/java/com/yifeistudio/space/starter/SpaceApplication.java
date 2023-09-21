@@ -1,7 +1,10 @@
 package com.yifeistudio.space.starter;
 
+import org.springframework.boot.Banner;
+import org.springframework.boot.ResourceBanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 
 /**
  * Space Application
@@ -12,8 +15,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class SpaceApplication {
 
     public static ConfigurableApplicationContext run(Class<?> clz, String[] args) {
-        // do something...
-        return SpringApplication.run(clz, args);
+        SpringApplication springApplication = new SpringApplication(clz);
+        Banner banner = new ResourceBanner(new ClassPathResource("yi-banner.txt"));
+        springApplication.setBanner(banner);
+        // TODO: 2023/9/21 do something else
+        return springApplication.run(args);
     }
 
 }

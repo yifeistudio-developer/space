@@ -1,15 +1,13 @@
 package com.yifeistudio.space.example
 
-import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource
+import com.yifeistudio.space.starter.SpaceApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
 
-@NacosPropertySource(autoRefreshed = true, dataId = "space-example-config")
 @SpringBootApplication
 class SpaceExampleApplication
 
 fun main(args: Array<String>) {
-    runApplication<SpaceExampleApplication>(*args)
+    SpaceApplication.run(SpaceExampleApplication::class.java, args)
 }
 
 

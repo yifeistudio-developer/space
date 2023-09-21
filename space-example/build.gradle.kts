@@ -23,10 +23,7 @@ repositories {
 }
 
 dependencies {
-
-    implementation("com.alibaba.boot:nacos-config-spring-boot-starter:0.2.12")
-    implementation("com.alibaba.boot:nacos-discovery-spring-boot-starter:0.2.12")
-    implementation("com.yifeistudio:space-starter:2.0.1-SNAPSHOT")
+    implementation("com.yifeistudio:space-starter:2.0.2-SNAPSHOT")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.jetbrains.kotlin:kotlin-reflect")

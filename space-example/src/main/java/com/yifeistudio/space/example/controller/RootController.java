@@ -1,6 +1,5 @@
 package com.yifeistudio.space.example.controller;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.yifeistudio.space.unit.model.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,10 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 class RootController {
-
-
-    @NacosValue(value = "${application.name:aaa}", autoRefreshed = true)
-    private String applicationName;
 
     @GetMapping("/ac")
     public Result<?> index() {

@@ -1,6 +1,7 @@
 package com.yifeistudio.space.starter.auto;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
@@ -21,16 +22,16 @@ public class SpaceListener implements ApplicationListener<ApplicationEvent> {
 
     @Resource
     private Environment environment;
+
     /**
      * Handle an application event.
      *
      * @param event the event to respond to
      */
     @Override
-    public void onApplicationEvent(ApplicationEvent event) {
+    public void onApplicationEvent(@NotNull ApplicationEvent event) {
         if (event instanceof ApplicationEnvironmentPreparedEvent) {
             log.info("space-starter is testing...");
-
         }
     }
 }

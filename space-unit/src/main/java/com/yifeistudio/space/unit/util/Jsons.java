@@ -78,11 +78,12 @@ public final class Jsons {
 
     //---------- getter setter ----------
 
-    public static Optional<ObjectMapper> getObjectMapper() {
-        return Optional.of(objectMapper);
+    public static ObjectMapper getObjectMapper() {
+        return objectMapper;
     }
 
     public static void setObjectMapper(ObjectMapper objectMapper) {
+        Asserts.notNull(objectMapper, "objectMapper is required.");
         Jsons.objectMapper = objectMapper;
     }
 
