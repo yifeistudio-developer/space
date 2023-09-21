@@ -15,7 +15,6 @@ import javax.annotation.Resource;
  * @author : hongyi
  * created at 2022/4/20 - 11:06
  **/
-// FIXME: 2023/9/21 adjust
 @Slf4j
 public class SpaceListener implements ApplicationListener<ApplicationEvent> {
 

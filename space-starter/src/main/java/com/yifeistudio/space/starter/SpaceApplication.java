@@ -18,7 +18,6 @@ public class SpaceApplication {
         SpringApplication springApplication = new SpringApplication(clz);
         Banner banner = new ResourceBanner(new ClassPathResource("yi-banner.txt"));
         springApplication.setBanner(banner);
-        // TODO: 2023/9/21 do something else
         return springApplication.run(args);
     }
 

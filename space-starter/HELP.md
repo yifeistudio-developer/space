@@ -1,17 +1,18 @@
-# Getting Started
+# 要求
 
-### Reference Documentation
+ - Java 17+
 
-For further reference, please consider the following sections:
+# 功能
+ 
+ - 提供统一日志默认格式及收集策略
+ - 提供默认配置中心管理
+ - 自定义事件功能扩展
+ - 提供线程池管理模式
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.6.6/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.6.6/gradle-plugin/reference/html/#build-image)
-* [Spring Configuration Processor](https://docs.spring.io/spring-boot/docs/2.6.6/reference/htmlsingle/#configuration-metadata-annotation-processor)
+# 安装
 
-### Additional Links
+# 使用
 
-These additional references should also help you:
+# 配置
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
-
+# 说明
