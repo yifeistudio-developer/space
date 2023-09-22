@@ -1,14 +1,12 @@
 package com.yifeistudio.space.starter.auto;
 
 import com.yifeistudio.space.unit.AssertException;
-import com.yifeistudio.space.unit.model.Result;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
@@ -19,7 +17,6 @@ import java.util.Optional;
  * created at 2022/4/27 - 19:29
  **/
 @Slf4j
-@Component
 public class SpringContextHelper implements ApplicationContextAware {
 
     /**

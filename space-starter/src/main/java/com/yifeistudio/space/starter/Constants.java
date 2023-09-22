@@ -14,7 +14,7 @@ public final class Constants {
 
     }
 
-    public static final String NACOS_ADDR = "console.yifeistudio.com:8848";
+    public static final String NACOS_ADDR = "nacos.yifeistudio.com";
 
 
 

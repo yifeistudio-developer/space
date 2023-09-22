@@ -1,0 +1,6 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+  com.yifeistudio.space.starter.auto.SpaceEnvironmentPostProcessor
+org.springframework.context.ApplicationListener=\
+  com.yifeistudio.space.starter.auto.SpaceListener
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.yifeistudio.space.starter.auto.SpaceAutoConfiguration

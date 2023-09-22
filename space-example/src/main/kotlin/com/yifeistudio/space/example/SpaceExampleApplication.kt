@@ -1,13 +1,13 @@
 package com.yifeistudio.space.example
 
-import com.yifeistudio.space.starter.SpaceApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.runApplication
 
 @SpringBootApplication
 class SpaceExampleApplication
 
 fun main(args: Array<String>) {
-    SpaceApplication.run(SpaceExampleApplication::class.java, args)
+    runApplication<SpaceExampleApplication>(*args)
 }
 
 

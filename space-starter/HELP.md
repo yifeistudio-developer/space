@@ -18,5 +18,7 @@
 # 使用
 
 # 配置
-
+    
+    nacos地址：nacos.yifeistudio.com
+    
 # 说明
