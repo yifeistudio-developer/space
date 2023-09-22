@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.7.3"
+    id("org.springframework.boot") version "3.1.3"
     id("io.spring.dependency-management") version "1.0.13.RELEASE"
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
@@ -23,7 +23,10 @@ repositories {
 }
 
 dependencies {
-    implementation("com.yifeistudio:space-starter:2.0.2-SNAPSHOT")
+    // nacos-config
+    implementation("com.alibaba.boot:nacos-config-spring-boot-starter:0.2.12")
+    implementation("com.alibaba.boot:nacos-discover-spring-boot-starter:0.2.12")
+    implementation("com.yifeistudio:space-starter:2.0.4-SNAPSHOT")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
