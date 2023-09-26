@@ -15,14 +15,12 @@ val jacksonVersion = "2.15.2"
 val junitVersion = "5.10.0"
 
 dependencies {
-
     compileOnly("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
     compileOnly("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
     testRuntimeOnly("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
     testRuntimeOnly("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-
 }
 
 java {
