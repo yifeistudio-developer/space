@@ -8,7 +8,6 @@ plugins {
 val ossrhUsername: String by project
 val ossrhPassword: String by project
 
-group = "com.yifeistudio"
 version = "2.0.1-RELEASE"
 
 val jacksonVersion = "2.15.2"

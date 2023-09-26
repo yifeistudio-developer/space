@@ -11,7 +11,6 @@ plugins {
 val ossrhUsername: String by project
 val ossrhPassword: String by project
 
-group = "com.yifeistudio"
 version = "2.0.8-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
