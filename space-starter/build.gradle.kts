@@ -4,8 +4,8 @@ plugins {
     signing
     `java-library`
     `maven-publish`
-    kotlin("jvm") version "1.6.10"
-    kotlin("plugin.spring") version "1.6.10"
+    kotlin("jvm") version "1.8.22"
+    kotlin("plugin.spring") version "1.8.22"
 }
 
 val ossrhUsername: String by project
@@ -19,11 +19,6 @@ configurations {
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
     }
-}
-
-repositories {
-    mavenCentral()
-    maven(url = "https://s01.oss.sonatype.org/content/groups/public/")
 }
 
 val lombokVersion = "1.18.30"

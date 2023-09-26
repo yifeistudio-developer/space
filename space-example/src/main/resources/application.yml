@@ -1,0 +1,11 @@
+logging:
+  level:
+    root: info
+nacos:
+  config:
+    server-addr: localhost:8848
+    data-ids: global-settings,example-settings
+    auto-refresh: true
+    bootstrap:
+      log-enable: true
+    config-long-poll-timeout: 3000
