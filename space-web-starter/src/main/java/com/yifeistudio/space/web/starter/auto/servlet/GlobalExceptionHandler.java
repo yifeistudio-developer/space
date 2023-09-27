@@ -2,7 +2,6 @@ package com.yifeistudio.space.web.starter.auto.servlet;
 
 import com.yifeistudio.space.unit.SpaceException;
 import com.yifeistudio.space.unit.model.Result;
-import com.yifeistudio.space.unit.util.Resources;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpStatus;
@@ -10,15 +9,13 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 
-
-import java.io.IOException;
 import java.util.Arrays;
 
 /**
@@ -79,6 +76,7 @@ class GlobalExceptionHandler {
 //        } catch (IOException e) {
 //            return handleUnknownException(e);
 //        }
+        return Result.fail(HttpStatus.BAD_REQUEST.value(), "读取请求体失败");
     }
 
     /**
