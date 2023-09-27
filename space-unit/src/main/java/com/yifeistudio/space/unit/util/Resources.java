@@ -1,5 +1,13 @@
 package com.yifeistudio.space.unit.util;
 
+import com.yifeistudio.space.unit.AssertException;
+import com.yifeistudio.space.unit.SpaceException;
+import com.yifeistudio.space.unit.model.Result;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.*;
 
 /**
@@ -52,4 +60,26 @@ public final class Resources {
         }
         return _EXECUTOR;
     }
+
+    /**
+     * 读取字节流
+     *
+     * @param in 输入流
+     * @return 字节内容
+     */
+    public static String read(InputStream in) {
+        String content;
+        try (BufferedInputStream bin = new BufferedInputStream(in)) {
+            byte[] buf = new byte[1024];
+            StringBuilder sb = new StringBuilder();
+            while (bin.read(buf) != -1) {
+                sb.append(new String(buf, StandardCharsets.UTF_8));
+            }
+            content = sb.toString();
+        } catch (IOException e) {
+            throw new SpaceException(Result.fail(2018, "读取字节流失败！"));
+        }
+        return content;
+    }
 }
+///～

@@ -6,6 +6,8 @@ plugins {
     `maven-publish`
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
+    id("org.springframework.boot") version "3.1.4"
+    id("io.spring.dependency-management") version "1.1.3"
 }
 
 val ossrhUsername: String by project
@@ -22,29 +24,32 @@ configurations {
 
 val lombokVersion = "1.18.30"
 val spaceVersion = "2.0.1-RELEASE"
-val springBootVersion = "3.1.3"
 val nacosVersion = "0.2.12"
 
 dependencies {
 
     api("com.yifeistudio:space-unit:${spaceVersion}")
 
-    compileOnly("org.springframework.boot:spring-boot:${springBootVersion}")
+    compileOnly("org.springframework.boot:spring-boot")
 
-    compileOnly("org.springframework.boot:spring-boot-autoconfigure:${springBootVersion}")
-    compileOnly("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
+    compileOnly("org.springframework.boot:spring-boot-autoconfigure")
+    compileOnly("org.springframework.boot:spring-boot-starter-aop")
     compileOnly("com.alibaba.boot:nacos-config-spring-boot-starter:${nacosVersion}")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    compileOnly("org.projectlombok:lombok:${lombokVersion}")
-    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor:${springBootVersion}")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    compileOnly("org.projectlombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 java {
     withSourcesJar()
+}
+
+tasks.bootJar {
+    enabled = false
 }
 
 tasks.jar {

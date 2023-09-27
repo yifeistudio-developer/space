@@ -8,7 +8,7 @@ plugins {
 val ossrhUsername: String by project
 val ossrhPassword: String by project
 
-version = "2.0.1-RELEASE"
+version = "2.0.2-SNAPSHOT"
 
 val jacksonVersion = "2.15.2"
 val junitVersion = "5.10.0"
