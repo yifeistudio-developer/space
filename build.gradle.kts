@@ -1,7 +1,7 @@
 version = "1.0-SNAPSHOT"
 
 allprojects {
-    group = "yifeistudio"
+    group = "com.yifeistudio"
     repositories {
         mavenLocal()
         mavenCentral()

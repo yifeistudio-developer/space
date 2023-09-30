@@ -23,7 +23,7 @@ configurations {
 }
 
 val lombokVersion = "1.18.30"
-val spaceVersion = "2.0.2-SNAPSHOT"
+val spaceVersion = "2.0.3-SNAPSHOT"
 val nacosVersion = "0.2.12"
 
 dependencies {

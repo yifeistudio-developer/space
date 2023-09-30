@@ -18,7 +18,7 @@ configurations {
 
 dependencies {
 
-    implementation(project(":space-starter"))
+    implementation(project(":space-web-starter"))
 
     // nacos-config
     implementation("com.alibaba.boot:nacos-config-spring-boot-starter:0.2.12")
