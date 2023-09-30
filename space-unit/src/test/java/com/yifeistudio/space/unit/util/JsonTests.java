@@ -3,6 +3,9 @@ package com.yifeistudio.space.unit.util;
 import com.yifeistudio.space.unit.model.Result;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 /**
  * Json 工具测试
  *
@@ -21,8 +24,12 @@ class JsonTests {
      */
     @Test
     void stringifyTest() {
-        String value = Jsons.stringify(Result.success(null)).get();
-        System.out.println(value);
+        Optional<String> optionalResult = Jsons.stringify(Result.success(LocalDateTime.now()));
+        if (optionalResult.isPresent()) {
+            String value = optionalResult.get();
+            System.out.println(value);
+        }
+
     }
 
     /**

@@ -3,7 +3,16 @@ package com.yifeistudio.space.unit.util;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 /**
@@ -21,8 +30,22 @@ public final class Jsons {
 
     // 默认配置
     static {
+        String localDatePattern = "yyyy-MM-dd";
+        String localTimePattern = "HH:mm:ss";
+        String localDateTimePattern = String.format("%s %s", localDatePattern, localTimePattern);
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        LocalDateTimeDeserializer dateTimeDeserializer = new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(localDateTimePattern));
+        LocalDateTimeSerializer dateTimeSerializer = new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(localDateTimePattern));
+        LocalDateDeserializer dateDeserializer = new LocalDateDeserializer(DateTimeFormatter.ofPattern(localDatePattern));
+        LocalDateSerializer dateSerializer = new LocalDateSerializer(DateTimeFormatter.ofPattern(localDatePattern));
+        LocalTimeDeserializer timeDeserializer = new LocalTimeDeserializer(DateTimeFormatter.ofPattern(localTimePattern));
+        LocalTimeSerializer timeSerializer = new LocalTimeSerializer(DateTimeFormatter.ofPattern(localTimePattern));
+        javaTimeModule.addDeserializer(LocalDateTime.class, dateTimeDeserializer);
+        javaTimeModule.addSerializer(LocalDateTime.class, dateTimeSerializer);
         objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        objectMapper.registerModule(javaTimeModule);
+
     }
 
     private Jsons() {}
