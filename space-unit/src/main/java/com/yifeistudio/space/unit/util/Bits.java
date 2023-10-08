@@ -12,22 +12,28 @@ public final class Bits {
      * 添加属性
      *
      * @param attr 属性
-     * @param mask 掩码
+     * @param masks 掩码
      * @return 含掩码的属性
      */
-    public static int add(int attr, int mask) {
-        return attr | mask;
+    public static int add(int attr, int... masks) {
+        for (int mask : masks) {
+            attr |= mask;
+        }
+        return attr;
     }
 
     /**
      * 移除属性
      *
      * @param attr 属性
-     * @param mask 掩码
+     * @param masks 掩码
      * @return 不含掩码的属性
      */
-    public static int remove(int attr, int mask) {
-        return (~mask) & attr;
+    public static int remove(int attr, int... masks) {
+        for (int mask : masks) {
+            attr = (~mask) & attr;
+        }
+        return attr;
     }
 
     /**
