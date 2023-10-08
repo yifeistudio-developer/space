@@ -1,2 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.yifeistudio.space.web.starter.auto.servlet.GlobalExceptionHandler,\
+  com.yifeistudio.space.web.starter.auto.react.ReactiveResultHandler,\
+  com.yifeistudio.space.web.starter.auto.servlet.ServletResultHandler,\
   com.yifeistudio.space.web.starter.auto.servlet.GlobalExceptionHandler
