@@ -4,6 +4,7 @@ import com.yifeistudio.space.unit.model.Result;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -37,6 +38,8 @@ class JsonTests {
      */
     @Test
     void parseTest() {
-
+        String str = "[\"ssss\",\"ssss\",\"ssss\"]";
+        List<String> result = Jsons.parseListAndGet(str, String.class);
+        System.out.println(result);
     }
 }
