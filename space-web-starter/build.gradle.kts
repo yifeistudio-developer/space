@@ -1,17 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    signing
-    `java-library`
-    `maven-publish`
     kotlin("jvm") version "1.8.22"
     kotlin("plugin.spring") version "1.8.22"
     id("org.springframework.boot") version "3.1.4"
     id("io.spring.dependency-management") version "1.1.3"
 }
-
-val ossrhUsername: String by project
-val ossrhPassword: String by project
 
 version = "2.0.0-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
@@ -57,39 +51,6 @@ tasks.jar {
         attributes(mapOf("Implementation-Title" to project.name,
             "Implementation-Version" to project.version))
     }
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-        }
-    }
-
-    // 仓库配置
-    repositories {
-        maven {
-
-            val releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            val snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            val isSnapshotVersion = version.toString().endsWith("SNAPSHOT")
-
-            credentials {
-                username = ossrhUsername
-                password = ossrhPassword
-            }
-            url = if (isSnapshotVersion) {
-                uri(snapshotsRepoUrl)
-            } else {
-                uri(releasesRepoUrl)
-            }
-        }
-    }
-}
-
-// 签名
-signing {
-    sign(publishing.publications["mavenJava"])
 }
 
 tasks.withType<KotlinCompile> {

@@ -5,5 +5,6 @@ include(
     "space-web-starter",
     "space-data-starter",
     "space-message-starter",
+    "space-grpc-starter",
     "space-example"
 )

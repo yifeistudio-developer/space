@@ -15,8 +15,8 @@ import org.springframework.context.annotation.Import;
  * @since 1.0
  */
 @AutoConfiguration
-@EnableConfigurationProperties(SpaceProperties.class)
 @Import(value = {SpringContextHelper.class})
+@EnableConfigurationProperties(SpaceProperties.class)
 @ConditionalOnProperty(value = "yifeistudio.space.enable", matchIfMissing = true)
 public class SpaceAutoConfiguration {
 

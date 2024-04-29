@@ -3,7 +3,6 @@ package com.yifeistudio.space.web.starter.auto.servlet;
 import com.yifeistudio.space.unit.SpaceException;
 import com.yifeistudio.space.unit.model.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
@@ -68,14 +67,7 @@ class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public Result<?> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
-        HttpInputMessage httpInputMessage = ex.getHttpInputMessage();
-//        try {
-//            String inputStr = Resources.read(httpInputMessage.getBody());
-//            log.error("catch bad stream: {}", inputStr);
-//            return Result.fail(HttpStatus.BAD_REQUEST.value(), "无法读取请求内容");
-//        } catch (IOException e) {
-//            return handleUnknownException(e);
-//        }
+        log.error("handle exception. ", ex);
         return Result.fail(HttpStatus.BAD_REQUEST.value(), "读取请求体失败");
     }
 
