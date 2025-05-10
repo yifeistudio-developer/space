@@ -1,14 +1,16 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.8.22"
-    kotlin("plugin.spring") version "1.8.22"
-    id("org.springframework.boot") version "3.1.4"
-    id("io.spring.dependency-management") version "1.1.3"
+    kotlin("jvm") version "2.1.20"
+    kotlin("plugin.spring") version "2.1.20"
+    id("org.springframework.boot") version "3.4.5"
+    id("org.asciidoctor.jvm.convert") version "4.0.4"
+    id("io.spring.dependency-management") version "1.1.7"
 }
 
 version = "2.0.8-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_17
+java.sourceCompatibility = JavaVersion.VERSION_21
 
 configurations {
     compileOnly {
@@ -16,9 +18,7 @@ configurations {
     }
 }
 
-val lombokVersion = "1.18.30"
 val spaceVersion = "2.0.3-SNAPSHOT"
-val nacosVersion = "0.2.12"
 
 dependencies {
 
@@ -26,7 +26,6 @@ dependencies {
     compileOnly("org.springframework.boot:spring-boot")
     compileOnly("org.springframework.boot:spring-boot-autoconfigure")
     compileOnly("org.springframework.boot:spring-boot-starter-aop")
-    compileOnly("com.alibaba.boot:nacos-config-spring-boot-starter:${nacosVersion}")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compileOnly("org.projectlombok:lombok")
@@ -35,12 +34,12 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
-java {
-    withSourcesJar()
-}
-
 tasks.bootJar {
     enabled = false
+}
+
+java {
+    withSourcesJar()
 }
 
 tasks.jar {
@@ -51,9 +50,9 @@ tasks.jar {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "17"
+    compilerOptions {
+        freeCompilerArgs.add("-Xjsr305=strict")
+        jvmTarget.set(JvmTarget.JVM_21)
     }
 }
 

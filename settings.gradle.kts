@@ -1,7 +1,7 @@
 rootProject.name = "space"
 include(
     "space-unit",
-    "space-starter",
+    "springboot-starter-space",
     "space-web-starter",
     "space-data-starter",
     "space-message-starter",

@@ -1,5 +1,6 @@
 package com.yifeistudio.space.starter.auto;
 
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
@@ -7,7 +8,6 @@ import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.env.Environment;
 
-import javax.annotation.Resource;
 
 /**
  * Space listener
